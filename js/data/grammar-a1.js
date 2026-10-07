@@ -238,5 +238,77 @@ const GRAMMAR_A1 = [
       { question: 'He ___ in Paris in 2019. (live)', answer: 'lived' },
       { question: '___ you at school yesterday?', options: ['Were', 'Was', 'Did'] }
     ]
+  },
+  {
+    id: 'a1-imperative',
+    level: 'A1',
+    title: 'Повелительное наклонение и местоимения me, him, her',
+    rule: `
+      <p>Просьба или указание — это глагол в начальной форме без подлежащего. Отрицание образуется с <b>don't</b>.</p>
+      <p class="rule-example"><b>Open</b> the window, please. — Открой окно, пожалуйста.<br>
+        <b>Don't be</b> late! — Не опаздывай!<br>
+        <b>Let's go</b> to the cinema. — Давай пойдём в кино.</p>
+      <p>После глагола и после предлога местоимение стоит в объектной форме:</p>
+      <div class="table-scroll">
+        <table class="rule-table">
+          <tr><th>I</th><th>you</th><th>he</th><th>she</th><th>it</th><th>we</th><th>they</th></tr>
+          <tr><td>me</td><td>you</td><td>him</td><td>her</td><td>it</td><td>us</td><td>them</td></tr>
+        </table>
+      </div>
+      <p class="rule-example">Call <b>me</b> tomorrow. I know <b>him</b>. Come with <b>us</b>.</p>
+    `,
+    exercises: [
+      { question: '___ the door, please. (close)', answer: 'Close' },
+      { question: '___ be late!', options: ["Don't", 'Not', "Doesn't"] },
+      { question: 'Give ___ the book, please. (I)', answer: 'me' },
+      { question: 'Do you know Peter? — Yes, I know ___.', answer: 'him' },
+      { question: 'Come with ___! (we)', options: ['us', 'we', 'our'] },
+      { question: "___ go to the park.", options: ["Let's", 'Let', 'Lets we'] }
+    ]
+  },
+  {
+    id: 'a1-demonstratives',
+    level: 'A1',
+    title: 'This, that, these, those',
+    rule: `
+      <div class="table-scroll">
+        <table class="rule-table">
+          <tr><th></th><th>рядом</th><th>далеко</th></tr>
+          <tr><td>один предмет</td><td><b>this</b> book</td><td><b>that</b> book</td></tr>
+          <tr><td>несколько</td><td><b>these</b> books</td><td><b>those</b> books</td></tr>
+        </table>
+      </div>
+      <p>Эти слова могут стоять и без существительного: <b>This</b> is my sister. Who is <b>that</b>?</p>
+      <p class="rule-example"><b>These</b> shoes are too small. Can I try <b>those</b> over there?</p>
+    `,
+    exercises: [
+      { question: '___ is my book. (рядом, один предмет)', answer: 'This' },
+      { question: '___ are my friends. (рядом, несколько)', answer: 'These' },
+      { question: 'Look at ___ bird over there!', options: ['that', 'this', 'these'] },
+      { question: '___ shoes over there are nice.', options: ['Those', 'That', 'This'] },
+      { question: 'Is ___ your pen here?', options: ['this', 'these', 'those'] },
+      { question: 'I like ___ flowers in my hand.', options: ['these', 'this', 'that'] }
+    ]
+  },
+  {
+    id: 'a1-frequency-adverbs',
+    level: 'A1',
+    title: 'Наречия частоты и их место в предложении',
+    rule: `
+      <p>Слова <b>always</b> (всегда), <b>usually</b> (обычно), <b>often</b> (часто), <b>sometimes</b> (иногда), <b>never</b> (никогда) показывают, как часто что-то происходит.</p>
+      <ul>
+        <li>Перед обычным глаголом: I <b>always get up</b> at seven. She <b>never drinks</b> coffee.</li>
+        <li>После глагола to be: He <b>is often</b> late. They <b>are never</b> at home.</li>
+        <li>С never второе отрицание не нужно: I <b>never</b> eat meat (не <s>I don't never</s>).</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'Выберите правильное предложение:', options: ['I always get up at seven.', 'I get always up at seven.', 'Always get I up at seven.'] },
+      { question: 'Выберите правильное предложение:', options: ['She is never late.', 'She never is late.', 'She is late never.'] },
+      { question: 'He ___ plays football on Sundays. (обычно)', answer: 'usually' },
+      { question: 'I ___ drink coffee. I do not like it. (никогда)', answer: 'never' },
+      { question: 'We ___ go to the cinema. (иногда)', answer: 'sometimes' },
+      { question: 'They are ___ at home in the evening. (часто)', answer: 'often' }
+    ]
   }
 ];

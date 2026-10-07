@@ -37,6 +37,26 @@ function speak(text) {
   speechSynthesis.speak(utterance);
 }
 
+// Читает длинный текст. Текст делим на предложения и ставим их в очередь:
+// одно длинное высказывание некоторые браузеры обрывают на полуслове.
+function speakText(text, isSlow) {
+  if (!isSpeechSupported) {
+    return;
+  }
+  speechSynthesis.cancel();
+
+  const sentences = text.match(/[^.!?]+[.!?]*/g) || [text];
+  for (const sentence of sentences) {
+    const utterance = new SpeechSynthesisUtterance(sentence.trim());
+    utterance.lang = 'en-US';
+    utterance.rate = isSlow ? 0.7 : 0.9;
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+    }
+    speechSynthesis.speak(utterance);
+  }
+}
+
 function stopSpeaking() {
   if (isSpeechSupported) {
     speechSynthesis.cancel();

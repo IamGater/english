@@ -10,6 +10,12 @@
 //   #/practice                — список заданий
 //   #/practice/test/A1        — тест уровня
 //   #/practice/dialog/a1-cafe — диалог
+//   #/practice/dictation/A1   — диктант
+//   #/practice/listening/<id> — аудирование
+//   #/practice/reading/<id>   — чтение
+//   #/practice/exam/A1        — пробный экзамен
+//   #/mistakes                — работа над ошибками
+//   #/stats                   — статистика
 //   #/placement               — входной тест
 
 function showCurrentPage() {
@@ -25,12 +31,16 @@ function showCurrentPage() {
   const section = parts[0] || 'home';
 
   stopSpeaking();
+  stopExamTimer();
   window.scrollTo(0, 0);
   highlightMenu(section);
 
   // Незаконченная викторина не должна остаться на скрытом экране
   document.getElementById('session-content').replaceChildren();
   document.getElementById('lesson-content').replaceChildren();
+  document.getElementById('listening-content').replaceChildren();
+  document.getElementById('reading-content').replaceChildren();
+  document.getElementById('exam-content').replaceChildren();
 
   // При первом посещении вместо любой страницы показываем приветствие
   if (shouldShowWelcome() && section !== 'placement') {
@@ -40,6 +50,10 @@ function showCurrentPage() {
 
   if (section === 'placement') {
     showPlacementPage();
+  } else if (section === 'stats') {
+    showStatsPage();
+  } else if (section === 'mistakes') {
+    showMistakesPage();
   } else if (section === 'vocab') {
     if (parts[1] === 'train') {
       showTrainingPage(parts[2]);
@@ -59,6 +73,14 @@ function showCurrentPage() {
       showTestPage(parts[2]);
     } else if (parts[1] === 'dialog') {
       showDialogPage(parts[2]);
+    } else if (parts[1] === 'dictation') {
+      showDictationPage(parts[2]);
+    } else if (parts[1] === 'listening') {
+      showListeningPage(parts[2]);
+    } else if (parts[1] === 'reading') {
+      showReadingPage(parts[2]);
+    } else if (parts[1] === 'exam') {
+      showExamPage(parts[2]);
     } else {
       showPracticePage();
     }

@@ -47,6 +47,12 @@ function showHomePage() {
     trainLink.textContent = 'Начать тренировку';
   }
 
+  // Кнопка работы над ошибками видна, только когда ошибки есть
+  const mistakeCount = countMistakes();
+  const mistakesLink = document.getElementById('home-mistakes-link');
+  mistakesLink.hidden = mistakeCount === 0;
+  mistakesLink.textContent = 'Работа над ошибками (' + mistakeCount + ')';
+
   const levelsContainer = document.getElementById('home-levels');
   levelsContainer.replaceChildren();
   for (const levelProgress of allProgress) {

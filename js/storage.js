@@ -8,7 +8,9 @@ const STORAGE_KEY = 'english.progress';
 //   words        — по каждому начатому слову: { stage, nextReview, correct, wrong }
 //   grammar      — лучший результат по каждой теме (от 0 до 1)
 //   practice     — лучший результат по каждому тесту и диалогу (от 0 до 1)
-//   activityDays — в какие дни пользователь занимался
+//   activityDays — по дням: сколько вопросов отвечено и сколько из них верно
+//   wordMistakes, grammarMistakes — на чём пользователь ошибался (для работы над ошибками)
+//   exams        — лучший результат пробного экзамена по каждому уровню
 //   theme        — 'light', 'dark' или null (как в системе)
 //   hasSeenWelcome — показывали ли уже приветствие с выбором «с нуля / уже знаю»
 let progress = createEmptyProgress();
@@ -19,6 +21,9 @@ function createEmptyProgress() {
     grammar: {},
     practice: {},
     activityDays: {},
+    wordMistakes: {},
+    grammarMistakes: {},
+    exams: {},
     theme: null,
     newWordsPerSession: 10,
     hasSeenWelcome: false
@@ -64,9 +69,27 @@ function resetProgress() {
 }
 
 // Отмечает, что сегодня пользователь занимался (нужно для счётчика дней подряд)
-function markActivityToday() {
+// Запись о сегодняшнем дне. Если её ещё нет, создаём.
+function getTodayActivity() {
   const todayKey = getDateKey(new Date());
-  progress.activityDays[todayKey] = true;
+  let day = progress.activityDays[todayKey];
+  // В старых сохранениях день отмечался просто значением true, без счётчиков
+  if (typeof day !== 'object') {
+    day = { answers: 0, correct: 0 };
+    progress.activityDays[todayKey] = day;
+  }
+  return day;
+}
+
+function markActivityToday() {
+  getTodayActivity();
+}
+
+// Добавляет ответы в статистику сегодняшнего дня
+function countAnswersToday(answerCount, correctCount) {
+  const day = getTodayActivity();
+  day.answers += answerCount;
+  day.correct += correctCount;
 }
 
 // Лучший результат темы, теста или диалога. Худший результат лучший не перезаписывает.

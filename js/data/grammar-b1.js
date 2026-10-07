@@ -24,7 +24,7 @@ const GRAMMAR_B1 = [
       { question: 'I ___ here since 2015. (live)', answer: 'have lived', alsoCorrect: ["'ve lived", 'have been living'] },
       { question: 'She ___ to Paris last year. (go)', answer: 'went' },
       { question: 'We have known each other ___ ten years.', answer: 'for' },
-      { question: 'Have you finished your homework ___?', options: ['yet', 'already', 'since'] },
+      { question: 'Have you finished your homework ___?', options: ['yet', 'ago', 'since'] },
       { question: 'I ___ him yesterday.', options: ['saw', 'have seen', 'seen'] },
       { question: 'He has worked here ___ January.', answer: 'since' }
     ]
@@ -200,6 +200,92 @@ const GRAMMAR_B1 = [
       { question: 'We want ___ to the cinema.', options: ['to go', 'going', 'go'] },
       { question: 'They finished ___ the house at six.', options: ['cleaning', 'to clean', 'clean'] },
       { question: 'I hope ___ you soon. (see)', answer: 'to see' }
+    ]
+  },
+  {
+    id: 'b1-modals-ability',
+    level: 'B1',
+    title: 'Could, be able to, may, might',
+    rule: `
+      <ul>
+        <li><b>could</b> — умел или мог в прошлом вообще: I <b>could</b> swim when I was five.</li>
+        <li><b>was / were able to</b> — смог в конкретной ситуации: The door was locked, but I <b>was able to</b> open it.</li>
+        <li>У can нет будущего времени и перфекта, поэтому используется <b>be able to</b>: I <b>will be able to</b> come. I <b>haven't been able to</b> sleep.</li>
+        <li><b>may</b> и <b>might</b> — «возможно»: It <b>may</b> rain. She <b>might</b> be at home. Might выражает чуть меньшую уверенность.</li>
+        <li><b>May I…?</b> — вежливая просьба о разрешении: <b>May</b> I come in?</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'I ___ swim when I was five.', options: ['could', 'can', 'may'] },
+      { question: 'I will be ___ to help you tomorrow.', answer: 'able' },
+      { question: 'Take an umbrella. It ___ rain later.', options: ['might', 'can', 'is able to'] },
+      { question: '___ I come in?', options: ['May', 'Am I able', 'Might to'] },
+      { question: "I haven't been able ___ sleep.", answer: 'to' },
+      { question: 'The exam was hard, but she was ___ to pass.', answer: 'able' }
+    ]
+  },
+  {
+    id: 'b1-question-tags',
+    level: 'B1',
+    title: 'Разделительные вопросы (question tags)',
+    rule: `
+      <p>Короткий вопрос в конце предложения соответствует русскому «не так ли?». Он строится из вспомогательного глагола и местоимения.</p>
+      <ul>
+        <li>Утверждение → отрицательный хвостик: You are tired, <b>aren't you</b>?</li>
+        <li>Отрицание → положительный хвостик: She doesn't smoke, <b>does she</b>?</li>
+        <li>Глагол берётся тот же, что в основной части. Если вспомогательного глагола нет, используется <b>do / does / did</b>: He lives here, <b>doesn't he</b>? They came, <b>didn't they</b>?</li>
+        <li>Особые случаи: I am right, <b>aren't I</b>? Let's go, <b>shall we</b>?</li>
+      </ul>
+    `,
+    exercises: [
+      { question: "You are tired, ___ you?", answer: "aren't" },
+      { question: "She doesn't smoke, ___ she?", answer: 'does' },
+      { question: 'He lives here, ___?', options: ["doesn't he", "isn't he", "don't he"] },
+      { question: 'They came yesterday, ___?', options: ["didn't they", "weren't they", "don't they"] },
+      { question: "You can swim, ___ you?", answer: "can't" },
+      { question: "Let's go, ___?", options: ['shall we', "don't we", 'will you'] }
+    ]
+  },
+  {
+    id: 'b1-articles-advanced',
+    level: 'B1',
+    title: 'Артикли: когда the не нужен',
+    rule: `
+      <ul>
+        <li><b>Без артикля</b> — когда говорим о чём-то вообще: <b>Life</b> is beautiful. I like <b>music</b>. <b>Dogs</b> are friendly.</li>
+        <li><b>Без артикля</b> — приёмы пищи, языки, виды транспорта с by, большинство стран и городов: have <b>breakfast</b>, speak <b>English</b>, go <b>by bus</b>, in <b>France</b>.</li>
+        <li><b>the</b> — единственное в своём роде, превосходная степень, музыкальные инструменты, реки, моря и океаны: <b>the</b> sun, <b>the</b> best film, play <b>the</b> piano, <b>the</b> Thames.</li>
+        <li><b>a / an</b> — профессии: She is <b>an</b> engineer.</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'Выберите правильное предложение:', options: ['Life is beautiful.', 'The life is beautiful.', 'A life is beautiful.'] },
+      { question: 'She plays ___ piano.', answer: 'the' },
+      { question: 'Выберите правильное предложение:', options: ['We had breakfast at eight.', 'We had the breakfast at eight.', 'We had a breakfast at eight.'] },
+      { question: 'It is ___ best film I have ever seen.', answer: 'the' },
+      { question: 'Выберите правильное предложение:', options: ['He goes to work by bus.', 'He goes to work by the bus.', 'He goes to work by a bus.'] },
+      { question: 'My sister is ___ engineer.', answer: 'an' }
+    ]
+  },
+  {
+    id: 'b1-phrasal-verbs-order',
+    level: 'B1',
+    title: 'Фразовые глаголы: порядок слов',
+    rule: `
+      <p>Фразовый глагол состоит из глагола и частицы (up, off, on, out…), которая меняет его значение: give → give <b>up</b> (бросить).</p>
+      <ul>
+        <li><b>Разделяемые</b>: существительное можно поставить и после частицы, и между глаголом и частицей — turn <b>off</b> the light / turn the light <b>off</b>.</li>
+        <li>Местоимение у разделяемых глаголов стоит <b>только в середине</b>: turn <b>it</b> off (не <s>turn off it</s>).</li>
+        <li><b>Неразделяемые</b>: дополнение всегда после частицы — look <b>after</b> the baby, look <b>for</b> the keys.</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'Выберите правильное предложение:', options: ['Turn it off, please.', 'Turn off it, please.', 'Turn it of, please.'] },
+      { question: 'Выберите правильное предложение:', options: ['I am looking for my keys.', 'I am looking my keys for.', 'I am looking for to my keys.'] },
+      { question: 'Please take ___ your shoes.', answer: 'off' },
+      { question: 'Can you pick me ___ at six?', answer: 'up' },
+      { question: 'Выберите правильное предложение:', options: ['She looks after her little brother.', 'She looks her little brother after.', 'She looks after of her little brother.'] },
+      { question: 'I gave ___ smoking last year.', answer: 'up' }
     ]
   }
 ];

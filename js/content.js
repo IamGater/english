@@ -1,7 +1,8 @@
 'use strict';
 
 // Собирает данные из файлов js/data в общие списки:
-// WORDS — все слова, GRAMMAR — все темы, DIALOGS — все диалоги, PRACTICE — задания практики.
+// WORDS — все слова, GRAMMAR — все темы, DIALOGS — все диалоги, LISTENING — все записи для аудирования,
+// PRACTICE — задания практики.
 
 const LEVELS = ['A1', 'A2', 'B1', 'B2'];
 
@@ -13,8 +14,10 @@ addWords('B2', WORDS_B2);
 
 const GRAMMAR = [].concat(GRAMMAR_A1, GRAMMAR_A2, GRAMMAR_B1, GRAMMAR_B2);
 const DIALOGS = [].concat(DIALOGS_A1, DIALOGS_A2, DIALOGS_B1, DIALOGS_B2);
+const LISTENING = [].concat(LISTENING_A1, LISTENING_A2, LISTENING_B1, LISTENING_B2);
+const READING = [].concat(READING_A1, READING_A2, READING_B1, READING_B2);
 
-// В практике у каждого уровня есть тест и несколько диалогов
+// В практике у каждого уровня есть тест, диктант, аудирование, чтение и диалоги
 const PRACTICE = [];
 for (const level of LEVELS) {
   PRACTICE.push({
@@ -24,6 +27,38 @@ for (const level of LEVELS) {
     description: '20 вопросов: слова и грамматика',
     link: '#/practice/test/' + level
   });
+
+  PRACTICE.push({
+    id: 'dictation-' + level,
+    level: level,
+    title: 'Диктант уровня ' + level,
+    description: '10 слов на слух',
+    link: '#/practice/dictation/' + level
+  });
+
+  for (const listening of LISTENING) {
+    if (listening.level === level) {
+      PRACTICE.push({
+        id: listening.id,
+        level: level,
+        title: 'Аудирование: ' + listening.title,
+        description: 'Запись и ' + listening.questions.length + ' вопроса',
+        link: '#/practice/listening/' + listening.id
+      });
+    }
+  }
+
+  for (const reading of READING) {
+    if (reading.level === level) {
+      PRACTICE.push({
+        id: reading.id,
+        level: level,
+        title: 'Чтение: ' + reading.title,
+        description: 'Текст и ' + reading.questions.length + ' вопроса',
+        link: '#/practice/reading/' + reading.id
+      });
+    }
+  }
 
   for (const dialog of DIALOGS) {
     if (dialog.level === level) {
@@ -106,6 +141,24 @@ function findDialog(dialogId) {
   for (const dialog of DIALOGS) {
     if (dialog.id === dialogId) {
       return dialog;
+    }
+  }
+  return null;
+}
+
+function findListening(listeningId) {
+  for (const listening of LISTENING) {
+    if (listening.id === listeningId) {
+      return listening;
+    }
+  }
+  return null;
+}
+
+function findReading(readingId) {
+  for (const reading of READING) {
+    if (reading.id === readingId) {
+      return reading;
     }
   }
   return null;

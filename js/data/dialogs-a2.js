@@ -44,7 +44,7 @@ const DIALOGS_A2 = [
         english: 'Do I have to stay at home?',
         russian: 'Мне нужно оставаться дома?',
         wrong: [
-          'Have I to stay at home?',
+          'Do I have stay at home?',
           'Do I must stay at home?'
         ]
       },

@@ -1,6 +1,7 @@
 'use strict';
 
 // Раздел «Практика»: список заданий, тест уровня и диалоги.
+// Диктант и аудирование лежат в listening.js.
 
 const TEST_WORD_QUESTIONS = 10;
 const TEST_GRAMMAR_QUESTIONS = 10;
@@ -9,6 +10,7 @@ const TEST_GRAMMAR_QUESTIONS = 10;
 
 function showPracticePage() {
   showScreen('screen-practice');
+  showExamList();
   const container = document.getElementById('practice-list');
   showItemsByLevel(container, PRACTICE, progress.practice, function (task) {
     return task.link;
@@ -172,6 +174,7 @@ function finishDialog() {
   const score = correctCount / dialogReplyCount;
   const dialogId = currentDialog.id;
 
+  countAnswersToday(dialogReplyCount, correctCount);
   saveBestScore(progress.practice, dialogId, score);
 
   const text = 'Реплик с первой попытки: ' + correctCount + ' из ' + dialogReplyCount + '.';

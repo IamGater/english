@@ -8,7 +8,9 @@
 //   { type: 'translate', word }     — выбрать перевод английского слова
 //   { type: 'choose-word', word }   — выбрать английское слово
 //   { type: 'type-word', word }     — напечатать английское слово
+//   { type: 'dictation', word }     — услышать слово и написать его
 //   { type: 'grammar', exercise }   — грамматическое упражнение
+//   { type: 'comprehension', exercise } — вопрос к тексту или записи (устроен как упражнение с вариантами)
 // Дополнительно у вопроса по слову могут быть поля isRetry (повтор после ошибки,
 // в счёт не идёт) и skipStage (режим «уже знаю»).
 
@@ -81,6 +83,8 @@ function showCurrentQuestion() {
     showChooseWordQuestion(question.word);
   } else if (question.type === 'type-word') {
     showTypeWordQuestion(question.word);
+  } else if (question.type === 'dictation') {
+    showDictationQuestion(question.word);
   } else if (question.exercise.options) {
     showGrammarChoiceQuestion(question.exercise);
   } else {
@@ -103,6 +107,14 @@ function finishQuestion(isCorrect) {
       quiz.correctCount++;
     }
   }
+
+  // Для статистики считаем каждый ответ. Ошибки запоминаем для работы над ошибками,
+  // но не во входном тесте и не на экзамене: там много ещё не изученного материала.
+  countAnswersToday(1, isCorrect ? 1 : 0);
+  if (!isCorrect && !quiz.isExam) {
+    rememberMistake(question);
+  }
+  saveProgress();
 
   let note = '';
   if (quiz.onAnswer) {
@@ -133,7 +145,7 @@ function showFeedback(question, isCorrect, note) {
   }
 
   // После вопроса по слову показываем его карточку, после грамматики — правильное предложение
-  if (question.type === 'grammar') {
+  if (question.exercise) {
     details.append(createGrammarAnswer(question.exercise));
   } else {
     details.append(createWordCard(question.word));
@@ -367,6 +379,34 @@ function showTypeWordQuestion(word) {
   setupAnswerInput(element, input, checkAnswer);
   quiz.bodyElement.replaceChildren(element);
   input.focus();
+}
+
+// Диктант: слово звучит, его нужно написать. Перевод и само слово на экране не показываются.
+function showDictationQuestion(word) {
+  const element = cloneTemplate('dictation-question-template');
+  const input = element.querySelector('.answer-input');
+
+  element.querySelector('.listen-button').addEventListener('click', function () {
+    speak(word.english);
+    input.focus();
+  });
+
+  function checkAnswer() {
+    if (input.value.trim() === '') {
+      input.focus();
+      return;
+    }
+    const isCorrect = normalizeAnswer(input.value) === normalizeAnswer(word.english);
+    input.disabled = true;
+    input.classList.add(isCorrect ? 'correct' : 'wrong');
+    element.querySelector('.check-button').hidden = true;
+    finishQuestion(isCorrect);
+  }
+
+  setupAnswerInput(element, input, checkAnswer);
+  quiz.bodyElement.replaceChildren(element);
+  input.focus();
+  speak(word.english);
 }
 
 /* ================= Вопросы по грамматике ================= */

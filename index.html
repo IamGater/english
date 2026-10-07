@@ -20,12 +20,16 @@
       document.documentElement.dataset.theme = theme;
     })();
   </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <svg class="sprite" aria-hidden="true">
     <symbol id="icon-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>
+    </symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M5 20V10M12 20V4M19 20v-7"/>
     </symbol>
     <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>
@@ -41,6 +45,9 @@
         <a href="#/grammar" data-section="grammar">Грамматика</a>
         <a href="#/practice" data-section="practice">Практика</a>
       </nav>
+      <a class="icon-button" href="#/stats" aria-label="Статистика" title="Статистика">
+        <svg width="20" height="20"><use href="#icon-chart"/></svg>
+      </a>
       <button class="icon-button" id="settings-open-button" type="button" aria-label="Настройки" title="Настройки">
         <svg width="20" height="20"><use href="#icon-settings"/></svg>
       </button>
@@ -77,7 +84,10 @@
         <div class="eyebrow">Подтверждённый уровень</div>
         <div class="hero-level" id="home-level">A0</div>
         <p class="muted" id="home-facts"></p>
-        <a class="btn primary big" href="#/vocab/train/all" id="home-train-link">Начать тренировку</a>
+        <div class="row center">
+          <a class="btn primary big" href="#/vocab/train/all" id="home-train-link">Начать тренировку</a>
+          <a class="btn big" href="#/mistakes" id="home-mistakes-link" hidden>Работа над ошибками</a>
+        </div>
       </div>
       <div class="card levels" id="home-levels"></div>
     </section>
@@ -166,7 +176,101 @@
     <!-- Практика: список заданий -->
     <section class="screen" id="screen-practice" hidden>
       <div class="page-head"><h1>Практика</h1></div>
+      <div class="level-heading"><h2>Пробные экзамены</h2></div>
+      <p class="muted small">В формате Cambridge English: чтение, аудирование, лексика и грамматика на время. Письмо и говорение не входят.</p>
+      <div class="list" id="practice-exams"></div>
       <div id="practice-list"></div>
+    </section>
+
+    <!-- Практика: чтение (js/pages/reading.js) -->
+    <section class="screen" id="screen-reading" hidden>
+      <div class="page-head">
+        <a class="back" href="#/practice">← Практика</a>
+        <h1 id="reading-title"></h1>
+        <p class="muted">Прочитайте текст и ответьте на вопросы. Текст остаётся перед глазами.</p>
+      </div>
+      <article class="card reading-text" id="reading-text"></article>
+      <div class="card" id="reading-content"></div>
+    </section>
+
+    <!-- Практика: пробный экзамен (js/pages/exam.js) -->
+    <section class="screen" id="screen-exam" hidden>
+      <div class="page-head">
+        <a class="back" href="#/practice">← Практика</a>
+        <h1 id="exam-title"></h1>
+      </div>
+      <div class="card exam-bar" id="exam-bar" hidden>
+        <span id="exam-part"></span>
+        <span class="exam-timer" id="exam-timer"></span>
+      </div>
+      <article class="card reading-text" id="exam-text" hidden></article>
+      <div class="card player" id="exam-player" hidden>
+        <button class="btn primary" type="button" id="exam-play-button">▶ Слушать</button>
+        <span class="muted small" id="exam-plays-left"></span>
+      </div>
+      <div class="card" id="exam-content"></div>
+    </section>
+
+    <!-- Статистика (js/pages/stats.js) -->
+    <section class="screen" id="screen-stats" hidden>
+      <div class="page-head"><h1>Статистика</h1></div>
+
+      <div class="stat-tiles">
+        <div class="stat-tile"><b id="stats-streak">0</b><span>дней подряд</span></div>
+        <div class="stat-tile"><b id="stats-answers">0</b><span>ответов всего</span></div>
+        <div class="stat-tile"><b id="stats-accuracy">—</b><span>верных ответов</span></div>
+        <div class="stat-tile"><b id="stats-learned">0</b><span>слов выучено</span></div>
+      </div>
+
+      <section class="card chart-card">
+        <h2 class="flush">Ответы за последние 30 дней</h2>
+        <p class="muted small" id="stats-activity-summary"></p>
+        <div class="bar-chart" id="stats-activity-chart"></div>
+      </section>
+
+      <section class="card chart-card">
+        <h2 class="flush">Слова по уровням</h2>
+        <div class="legend">
+          <span><i class="stack-learned"></i>выучено</span>
+          <span><i class="stack-learning"></i>в процессе</span>
+          <span><i class="stack-new"></i>не начато</span>
+        </div>
+        <div id="stats-levels"></div>
+      </section>
+
+      <section class="card chart-card">
+        <h2 class="flush">Повторения на ближайшие 7 дней</h2>
+        <p class="muted small">Сколько слов придёт на повторение в каждый из дней.</p>
+        <div class="bar-chart show-values" id="stats-forecast-chart"></div>
+      </section>
+
+      <section class="card chart-card">
+        <h2 class="flush">Самые трудные слова</h2>
+        <p class="muted small" id="stats-hard-words-note"></p>
+        <div id="stats-hard-words"></div>
+        <a class="btn" href="#/mistakes" id="stats-mistakes-link">Работа над ошибками</a>
+      </section>
+    </section>
+
+    <!-- Практика: аудирование (js/pages/listening.js) -->
+    <section class="screen" id="screen-listening" hidden>
+      <div class="page-head">
+        <a class="back" href="#/practice">← Практика</a>
+        <h1 id="listening-title"></h1>
+        <p class="muted">Прослушайте запись и ответьте на вопросы. Слушать можно сколько угодно раз, в том числе во время ответов.</p>
+      </div>
+      <div class="card player">
+        <button class="btn primary" type="button" id="listening-play-button">▶ Слушать</button>
+        <button class="btn" type="button" id="listening-stop-button">■ Стоп</button>
+        <label class="checkbox-label"><input type="checkbox" id="listening-slow-checkbox"> Медленнее</label>
+      </div>
+      <p class="notice" id="listening-no-speech" hidden>Ваш браузер не умеет озвучивать текст, поэтому запись прослушать не получится. Попробуйте другой браузер.</p>
+      <div class="card" id="listening-content"></div>
+      <!-- Текст записи открывается после ответов на вопросы -->
+      <details class="card transcript" id="listening-transcript" hidden>
+        <summary>Текст записи</summary>
+        <p id="listening-text"></p>
+      </details>
     </section>
 
     <!-- Практика: диалог -->
@@ -434,6 +538,90 @@
     </div>
   </template>
 
+  <!-- Статистика: столбец диаграммы, строка уровня и строка трудного слова -->
+  <template id="chart-column-template">
+    <div class="chart-column">
+      <div class="chart-plot">
+        <div class="chart-tip"></div>
+        <div class="chart-bar"></div>
+      </div>
+      <div class="chart-label"></div>
+    </div>
+  </template>
+
+  <template id="level-stack-template">
+    <div class="stack-row">
+      <span class="stack-name"></span>
+      <div class="stack-bar"><i class="stack-learned"></i><i class="stack-learning"></i><i class="stack-new"></i></div>
+      <span class="stack-numbers"></span>
+    </div>
+  </template>
+
+  <template id="hard-word-template">
+    <div class="hard-word">
+      <span class="word-english"></span>
+      <span class="word-translation"></span>
+      <span class="hard-word-count"></span>
+    </div>
+  </template>
+
+  <!-- Работа над ошибками: ошибок нет -->
+  <template id="no-mistakes-template">
+    <div class="empty">
+      <p><b>Ошибок в списке нет.</b></p>
+      <p>Сюда попадают слова и упражнения, в которых вы ошиблись. Верный ответ в работе над ошибками убирает вопрос из списка.</p>
+      <a class="btn" href="#/">К обзору</a>
+    </div>
+  </template>
+
+  <!-- Пробный экзамен: правила перед началом. Числа должны совпадать с константами в js/pages/exam.js -->
+  <template id="exam-intro-template">
+    <div>
+      <h2 class="flush">Как проходит экзамен</h2>
+      <ul class="plain-list">
+        <li><b>Чтение</b> — 2 текста, 8 вопросов.</li>
+        <li><b>Аудирование</b> — 2 записи, 8 вопросов. Каждую запись можно прослушать только два раза.</li>
+        <li><b>Лексика и грамматика</b> — 14 вопросов.</li>
+        <li>На весь экзамен даётся <b class="exam-minutes"></b> минут. Когда время выйдет, экзамен закончится сам.</li>
+        <li>Правильные ответы во время экзамена не показываются. Проходной балл — 60%.</li>
+        <li>Письмо и говорение в пробный экзамен не входят: проверить их автоматически нельзя.</li>
+      </ul>
+      <p class="muted exam-best"></p>
+      <button class="btn primary start-button" type="button">Начать экзамен</button>
+    </div>
+  </template>
+
+  <!-- Аудирование: блок перед вопросами (используется и в чтении) -->
+  <template id="listening-start-template">
+    <div>
+      <h2 class="flush">Вопросы</h2>
+      <p class="muted listening-info"></p>
+      <button class="btn primary start-button" type="button">Перейти к вопросам</button>
+    </div>
+  </template>
+
+  <!-- Диктант: услышать слово и написать его -->
+  <template id="dictation-question-template">
+    <div>
+      <div class="question-label">Напишите, что вы слышите</div>
+      <div class="question-text">
+        <button class="btn listen-button" type="button">▶ Прослушать ещё раз</button>
+      </div>
+      <div class="typing-row">
+        <input class="input answer-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Слово по-английски">
+      </div>
+      <button class="btn primary check-button" type="button">Проверить</button>
+    </div>
+  </template>
+
+  <!-- Диктант невозможен без озвучки -->
+  <template id="no-speech-template">
+    <div class="empty">
+      <p>Ваш браузер не умеет озвучивать текст, поэтому диктант недоступен. Попробуйте другой браузер.</p>
+      <a class="btn" href="#/practice">К практике</a>
+    </div>
+  </template>
+
   <!-- Диалог: реплика и выбор ответа -->
   <template id="bubble-template">
     <div class="bubble">
@@ -454,7 +642,7 @@
 
   <noscript><p class="wrap">Для работы сайта нужен JavaScript.</p></noscript>
 
-  <!-- Данные: слова, грамматика и диалоги по уровням -->
+  <!-- Данные: слова, грамматика, диалоги и аудирование по уровням -->
   <script src="js/data/words-a1.js"></script>
   <script src="js/data/words-a2.js"></script>
   <script src="js/data/words-b1.js"></script>
@@ -467,6 +655,14 @@
   <script src="js/data/dialogs-a2.js"></script>
   <script src="js/data/dialogs-b1.js"></script>
   <script src="js/data/dialogs-b2.js"></script>
+  <script src="js/data/listening-a1.js"></script>
+  <script src="js/data/listening-a2.js"></script>
+  <script src="js/data/listening-b1.js"></script>
+  <script src="js/data/listening-b2.js"></script>
+  <script src="js/data/reading-a1.js"></script>
+  <script src="js/data/reading-a2.js"></script>
+  <script src="js/data/reading-b1.js"></script>
+  <script src="js/data/reading-b2.js"></script>
 
   <!-- Общий код -->
   <script src="js/helpers.js"></script>
@@ -481,6 +677,11 @@
   <script src="js/pages/vocabulary.js"></script>
   <script src="js/pages/grammar.js"></script>
   <script src="js/pages/practice.js"></script>
+  <script src="js/pages/listening.js"></script>
+  <script src="js/pages/reading.js"></script>
+  <script src="js/pages/exam.js"></script>
+  <script src="js/pages/mistakes.js"></script>
+  <script src="js/pages/stats.js"></script>
   <script src="js/pages/placement.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/main.js"></script>

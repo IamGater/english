@@ -151,7 +151,7 @@ employee|сотрудник|The company has fifty employees.
 department|отдел|I work in the marketing department.
 meeting|совещание, встреча|The meeting lasts an hour.
 overtime|сверхурочная работа|I often work overtime.
-training|обучение, подготовка|He is doing training as a cook.
+training|обучение, подготовка|The training lasts two years.
 internship|стажировка|I am doing an internship.
 experience|опыт|She has a lot of experience.
 unemployed|безработный|He has been unemployed for a year.
@@ -216,7 +216,7 @@ page|страница|Open the book at page twenty.
 foreign language|иностранный язык|I speak two foreign languages.
 native language|родной язык|My native language is Russian.
 beginner|начинающий|The course is for beginners.
-knowledge|знания|I have good knowledge of English.
+knowledge|знания|I have a good knowledge of English.
 skill|навык|Reading is an important skill.
 note|заметка, запись|I take notes in class.
 test|тест, контрольная|We have a test on Friday.
@@ -285,7 +285,7 @@ heating|отопление|The heating is broken.
 electricity|электричество|Electricity is expensive.
 switch on|включать|Switch on the television, please.
 switch off|выключать|Switch off the light, please.
-socket|розетка|Where is a socket?
+socket|розетка|Is there a socket here?
 landlord|арендодатель|The landlord lives downstairs.
 tenant|арендатор|The tenants are very nice.
 move|переезжать; двигать|We are moving to Bristol.
@@ -345,7 +345,7 @@ boil|варить, кипятить|Boil the water first.
 cut|резать|Cut the bread, please.
 taste|пробовать; иметь вкус|Taste the soup!
 fresh|свежий|The bread is fresh.
-spicy|острый|The food is very spicy.
+spicy|острый (о еде)|The food is very spicy.
 sour|кислый|The lemon is sour.
 salty|солёный|The soup is too salty.
 raw|сырой|The meat is still raw.
@@ -438,18 +438,18 @@ internet|интернет|I look it up on the internet.
 password|пароль|I forgot my password.
 download|скачивать|I am downloading the app.
 device|устройство|The device is new.
-battery|батарея|The battery is empty.
+battery|батарея|The battery is dead.
 describe|описывать|Describe your room.
 discuss|обсуждать|We discuss politics.
 recommend|рекомендовать|What can you recommend?
 suggest|предлагать|I suggest we go for dinner.
-promise|обещать|I promise you.
+promise|обещать|I promise I will come.
 agree|соглашаться|I agree with you.
 refuse|отказываться|He refused the offer.
 allow|разрешать|My parents do not allow that.
 forbid|запрещать|Smoking is forbidden here.
 thank|благодарить|I want to thank you.
-congratulate|поздравлять|I congratulate you on your birthday.
+congratulate|поздравлять|I congratulate you on your success.
 greet|приветствовать|The boss greets the guests.
 introduce|представлять, знакомить|May I introduce myself?
 shout|кричать|Do not shout, please.
@@ -465,7 +465,7 @@ decide|решать|You have to decide.
 happen|случаться|What happened?
 last|длиться|How long does the film last?
 belong|принадлежать|The book belongs to me.
-lie|лежать|The book lies on the table.
+lie|лежать|The book is lying on the table.
 hang|висеть; вешать|The picture hangs on the wall.
 fetch|приносить, сходить за|I will fetch some bread.
 pull|тянуть|Pull the door!
@@ -568,4 +568,136 @@ over|над; через|The lamp hangs over the table.
 opposite|напротив|The bank is opposite.
 instead of|вместо|I drink tea instead of coffee.
 however|однако|It is expensive. However, it is good.
+
+# Город и услуги
+town hall|ратуша|The town hall is on the main square.
+city centre|центр города|There are many shops in the city centre.
+district|район|Which district do you live in?
+pavement|тротуар|Please walk on the pavement.
+building|здание|The building is very tall.
+petrol station|заправка|The petrol station is open.
+dry cleaner's|химчистка|I am taking the suit to the dry cleaner's.
+letterbox|почтовый ящик|The letter is in the letterbox.
+stamp|почтовая марка|I need a stamp.
+postcode|почтовый индекс|What is your postcode?
+opening hours|часы работы|What are the opening hours?
+counter|стойка, прилавок|Please go to counter three.
+fire brigade|пожарная служба|The fire brigade came quickly.
+lost property|бюро находок|Ask at the lost property office.
+playground|детская площадка|The children are in the playground.
+zoo|зоопарк|We are going to the zoo on Sunday.
+stadium|стадион|The match is at the stadium.
+timetable|расписание|The timetable is over there.
+line|линия, маршрут|Take line five.
+season ticket|проездной|I have a season ticket.
+passenger|пассажир|The passengers are getting off.
+pedestrian|пешеход|Pedestrians must wait here.
+roundabout|круговой перекрёсток|Turn left at the roundabout.
+zebra crossing|пешеходный переход|Cross at the zebra crossing.
+cash machine|банкомат|Is there a cash machine near here?
+queue|очередь|There is a long queue.
+escalator|эскалатор|Take the escalator to the second floor.
+tunnel|туннель|The tunnel is three kilometres long.
+harbour|гавань, порт|The ship is in the harbour.
+
+# Внешность и одежда
+appearance|внешность|Appearance is not so important.
+slim|стройный|She is tall and slim.
+blond|светловолосый|He has blond hair.
+beard|борода|My father has a beard.
+moustache|усы|He has a moustache.
+hairstyle|причёска|The new hairstyle suits you.
+good-looking|привлекательный|He is very good-looking.
+handsome|красивый (о мужчине)|The actor is handsome.
+elegant|элегантный|She looks elegant.
+underwear|нижнее бельё|Underwear is on the first floor.
+pyjamas|пижама|The child is wearing pyjamas.
+jeans|джинсы|I like wearing jeans.
+swimsuit|купальник|Do not forget your swimsuit!
+tie|галстук|He is wearing a tie.
+button|пуговица; кнопка|A button is missing.
+zip|молния (застёжка)|The zip is broken.
+sunglasses|солнечные очки|Where are my sunglasses?
+wool|шерсть|The sweater is made of wool.
+cotton|хлопок|The T-shirt is made of cotton.
+leather|кожа (материал)|The bag is made of leather.
+material|материал, ткань|The material is soft.
+striped|в полоску|He is wearing a striped shirt.
+checked|в клетку|I like the checked shirt.
+colourful|разноцветный|The dress is colourful.
+pink|розовый|The baby is wearing a pink dress.
+purple|фиолетовый|The flowers are purple.
+tights|колготки|She is wearing black tights.
+trainers|кроссовки|I need new trainers.
+pocket|карман|The key is in my pocket.
+sleeve|рукав|The sleeves are too long.
+
+# Школа и офис
+rubber|ластик|Do you have a rubber?
+ruler|линейка|I need a ruler.
+scissors|ножницы|The scissors are on the table.
+glue|клей|Where is the glue?
+folder|папка|The papers are in the folder.
+desk|письменный стол|The computer is on the desk.
+backpack|рюкзак|The backpack is heavy.
+maths|математика|Maths is my favourite subject.
+geography|география|We learn about Europe in geography.
+biology|биология|I find biology interesting.
+physics|физика|Physics is difficult.
+chemistry|химия|We do experiments in chemistry.
+copy|копия; копировать|I need a copy.
+envelope|конверт|The letter is in the envelope.
+paper clip|скрепка|Do you have a paper clip?
+calculator|калькулятор|Can I use the calculator?
+stapler|степлер|The stapler is empty.
+highlighter|маркер-выделитель|I mark the words with a highlighter.
+headteacher|директор школы|The headteacher is in a meeting.
+pupil|ученик|There are thirty pupils in the class.
+classmate|одноклассник|My classmate helps me.
+classroom|классная комната|The classroom is on the first floor.
+schoolbag|школьная сумка|My schoolbag is too heavy.
+diary|ежедневник, дневник|I write it in my diary.
+
+# Ещё глаголы
+serve|обслуживать, подавать|The waiter serves the guests.
+burn|гореть, жечь|The candle is burning.
+wrap|заворачивать|Shall I wrap it as a present?
+turn on|включать|Turn on the radio, please.
+turn off|выключать|Turn off the computer, please.
+excuse|извинять|Please excuse the mess.
+feed|кормить|I feed the cat.
+fall over|падать (о человеке)|The child fell over.
+sew|шить|My grandmother likes to sew.
+shave|бриться|He shaves every morning.
+shake|трясти|Shake before use.
+stick|приклеивать|Stick the stamp on the envelope.
+swap|меняться|Shall we swap seats?
+cross|переходить|We cross the street.
+weigh|весить, взвешивать|I weigh seventy kilos.
+cheer|ободрять, приветствовать криками|The fans cheer.
+clap|хлопать|The audience claps.
+bite|кусать|The dog does not bite.
+blow|дуть|The wind is blowing.
+dig|копать|He digs a hole in the garden.
+drop|ронять|I dropped my phone.
+pour|наливать|Can I pour you some wine?
+kick|пинать, бить ногой|He kicks the ball.
+hit|ударять|He hit the ball hard.
+fix|чинить|Can you fix the bike?
+pick|выбирать; срывать|The children pick apples.
+ride|ездить (верхом, на велосипеде)|I ride my bike to school.
+sail|ходить под парусом|We sail on the lake.
+slip|поскальзываться|Be careful, you can slip here.
+spill|проливать|I spilled my coffee.
+stir|мешать|Stir the soup well.
+swallow|глотать|It hurts to swallow.
+tear|рвать|I tore my trousers.
+wave|махать|The child waves goodbye.
+whistle|свистеть|He whistles a song.
+wipe|вытирать|I wipe the table.
+wonder|интересоваться, удивляться|I wonder where he is.
+yawn|зевать|He yawns because he is tired.
+lock|запирать|Lock the door, please.
+knock over|опрокидывать|I knocked over a glass.
+set the table|накрывать на стол|Can you set the table?
 `;

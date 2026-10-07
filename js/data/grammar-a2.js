@@ -194,5 +194,77 @@ const GRAMMAR_A2 = [
       { question: 'Выберите правильное предложение:', options: ['If I see him, I will tell him.', 'If I will see him, I tell him.', 'If I will see him, I will tell him.'] },
       { question: 'We will be late if we ___ hurry.', options: ["don't", "won't", "didn't"] }
     ]
+  },
+  {
+    id: 'a2-too-enough',
+    level: 'A2',
+    title: 'Too, enough, very',
+    rule: `
+      <ul>
+        <li><b>very</b> (очень) просто усиливает: The tea is <b>very</b> hot.</li>
+        <li><b>too</b> (слишком) — больше, чем нужно; стоит перед прилагательным: The tea is <b>too</b> hot to drink.</li>
+        <li><b>enough</b> (достаточно) стоит <b>после</b> прилагательного, но <b>перед</b> существительным: He is old <b>enough</b>. We have <b>enough</b> money.</li>
+        <li><b>too much</b> — с неисчисляемыми, <b>too many</b> — с исчисляемыми: too much sugar, too many people.</li>
+      </ul>
+      <p class="rule-example">The jacket is <b>too small</b>. = The jacket is <b>not big enough</b>.</p>
+    `,
+    exercises: [
+      { question: 'The coffee is ___ hot. I cannot drink it.', options: ['too', 'enough', 'much'] },
+      { question: 'He is not old ___ to drive.', answer: 'enough' },
+      { question: 'There are too ___ people on the bus.', options: ['many', 'much', 'enough'] },
+      { question: 'We do not have ___ time.', options: ['enough', 'too', 'very'] },
+      { question: 'I ate too ___ chocolate.', answer: 'much' },
+      { question: 'Выберите правильное предложение:', options: ['The room is big enough.', 'The room is enough big.', 'The room is too big enough.'] }
+    ]
+  },
+  {
+    id: 'a2-indefinite-pronouns',
+    level: 'A2',
+    title: 'Someone, anything, nobody, everywhere',
+    rule: `
+      <div class="table-scroll">
+        <table class="rule-table">
+          <tr><th></th><th>люди</th><th>вещи</th><th>места</th></tr>
+          <tr><td><b>some-</b> (утверждение)</td><td>someone</td><td>something</td><td>somewhere</td></tr>
+          <tr><td><b>any-</b> (вопрос, отрицание)</td><td>anyone</td><td>anything</td><td>anywhere</td></tr>
+          <tr><td><b>no-</b> (отрицательный смысл)</td><td>no one</td><td>nothing</td><td>nowhere</td></tr>
+          <tr><td><b>every-</b> (все)</td><td>everyone</td><td>everything</td><td>everywhere</td></tr>
+        </table>
+      </div>
+      <ul>
+        <li>После этих слов глагол стоит в единственном числе: Everyone <b>is</b> here.</li>
+        <li>В английском предложении только одно отрицание: I did <b>not</b> see <b>anyone</b> = I saw <b>no one</b>.</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'There is ___ at the door.', options: ['someone', 'anyone', 'anything'] },
+      { question: 'I did not see ___.', options: ['anyone', 'someone', 'no one'] },
+      { question: '___ is ready. We can start.', options: ['Everything', 'Anything', 'Nothing'] },
+      { question: 'I have ___ to do today. I am free.', options: ['nothing', 'anything', 'something'] },
+      { question: 'I cannot find my keys ___.', options: ['anywhere', 'somewhere', 'nowhere'] },
+      { question: '___ likes ice cream. It is so popular!', options: ['Everyone', 'No one', 'Anyone'] }
+    ]
+  },
+  {
+    id: 'a2-like-would-like',
+    level: 'A2',
+    title: 'Like doing и would like to do',
+    rule: `
+      <ul>
+        <li><b>like / love / hate + -ing</b> — то, что нравится вообще: I <b>like reading</b>. He <b>doesn't like getting</b> up early.</li>
+        <li><b>would like to + глагол</b> — вежливое «хотел бы» сейчас или в конкретной ситуации: I <b>would like to have</b> a coffee. В речи сокращается до <b>I'd like</b>.</li>
+        <li>Вопрос-предложение: <b>Would you like to</b> go to the cinema?</li>
+      </ul>
+      <p class="rule-example">Do you <b>like</b> coffee? — Ты любишь кофе? (вообще)<br>
+        <b>Would</b> you <b>like</b> a coffee? — Хочешь кофе? (сейчас)</p>
+    `,
+    exercises: [
+      { question: 'I like ___ books. (read)', answer: 'reading' },
+      { question: 'I would like ___ a coffee, please. (have)', answer: 'to have' },
+      { question: 'Would you like ___ to the cinema?', options: ['to go', 'going', 'go'] },
+      { question: 'Do you like ___?', options: ['swimming', 'swim', 'to swimming'] },
+      { question: 'What would you like ___? (drink)', answer: 'to drink' },
+      { question: 'He does not like ___ up early. (get)', answer: 'getting' }
+    ]
   }
 ];

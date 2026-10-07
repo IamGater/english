@@ -186,5 +186,78 @@ const GRAMMAR_B2 = [
       { question: 'He asked me where I ___.', options: ['lived', 'did live', 'do I live'] },
       { question: 'They refused ___ us.', options: ['to help', 'helping', 'help'] }
     ]
+  },
+  {
+    id: 'b2-inversion-emphasis',
+    level: 'B2',
+    title: 'Инверсия и выделение',
+    rule: `
+      <p>Чтобы усилить высказывание, в письменной и формальной речи меняют порядок слов.</p>
+      <ul>
+        <li>После отрицательных слов в начале предложения порядок слов как в вопросе: <b>Never have I</b> seen such a film. <b>Not only did he</b> come, he also helped. <b>Hardly had we</b> arrived when it started to rain.</li>
+        <li>Условие без if: <b>Had I known</b>, I would have come. <b>Should you need</b> help, call me.</li>
+        <li>Выделение с <b>what</b>: <b>What I need is</b> a holiday.</li>
+        <li>Выделение с <b>it is … that</b>: <b>It was Tom who</b> called.</li>
+        <li>Усилительное <b>do</b>: I <b>do</b> like it!</li>
+      </ul>
+    `,
+    exercises: [
+      { question: 'Never ___ I seen such a beautiful place.', answer: 'have' },
+      { question: 'Not only ___ he arrive late, he also forgot the documents.', answer: 'did' },
+      { question: '___ I known about it, I would have told you.', options: ['Had', 'If', 'Would'] },
+      { question: 'What I need ___ a long holiday.', answer: 'is' },
+      { question: 'It was Tom ___ called you yesterday.', options: ['who', 'what', 'which'] },
+      { question: 'Выберите правильное предложение:', options: ['Hardly had we arrived when it started to rain.', 'Hardly we had arrived when it started to rain.', 'Hardly had we arrived than it started to rain.'] }
+    ]
+  },
+  {
+    id: 'b2-participle-clauses',
+    level: 'B2',
+    title: 'Причастные обороты',
+    rule: `
+      <p>Причастный оборот заменяет придаточное предложение и делает текст короче. Подлежащее у оборота и главной части должно быть одним и тем же.</p>
+      <div class="table-scroll">
+        <table class="rule-table">
+          <tr><th>форма</th><th>значение</th><th>пример</th></tr>
+          <tr><td><b>-ing</b></td><td>активное действие в то же время или причина</td><td><b>Feeling</b> tired, I went to bed.</td></tr>
+          <tr><td><b>having + третья форма</b></td><td>действие, которое произошло раньше</td><td><b>Having finished</b> the report, she went home.</td></tr>
+          <tr><td><b>третья форма</b></td><td>пассивное значение</td><td><b>Built</b> in 1900, the house needs repairs.</td></tr>
+        </table>
+      </div>
+      <p>Такой же оборот может стоять после существительного: The man <b>standing</b> at the door is my uncle. The book <b>written</b> by Orwell is a classic.</p>
+    `,
+    exercises: [
+      { question: '___ finished the report, she went home.', options: ['Having', 'Had', 'Being'] },
+      { question: '___ in 1900, the house needs repairs. (build)', answer: 'Built' },
+      { question: '___ tired, I went to bed early. (feel)', answer: 'Feeling' },
+      { question: 'The man ___ at the door is my uncle.', options: ['standing', 'stood', 'stands'] },
+      { question: 'The book ___ by Orwell is a classic.', options: ['written', 'writing', 'wrote'] },
+      { question: 'Not ___ what to do, I called my sister. (know)', answer: 'knowing' }
+    ]
+  },
+  {
+    id: 'b2-causative-verbs',
+    level: 'B2',
+    title: 'Make, let, get, have: побудить кого-то к действию',
+    rule: `
+      <div class="table-scroll">
+        <table class="rule-table">
+          <tr><th>конструкция</th><th>значение</th><th>пример</th></tr>
+          <tr><td><b>make</b> + кого + глагол</td><td>заставить</td><td>My parents made me clean my room.</td></tr>
+          <tr><td><b>let</b> + кого + глагол</td><td>позволить</td><td>She let him use her car.</td></tr>
+          <tr><td><b>have</b> + кого + глагол</td><td>поручить</td><td>The teacher had the students write an essay.</td></tr>
+          <tr><td><b>get</b> + кого + <b>to</b> + глагол</td><td>уговорить</td><td>I got him to help me.</td></tr>
+        </table>
+      </div>
+      <p>После make, let и have глагол стоит <b>без to</b>, после get — <b>с to</b>. В пассиве у make появляется to: He <b>was made to wait</b>.</p>
+    `,
+    exercises: [
+      { question: 'My parents made me ___ my room. (clean)', answer: 'clean' },
+      { question: 'She let him ___ her car. (use)', answer: 'use' },
+      { question: 'I got him ___ me. (help)', answer: 'to help' },
+      { question: 'He was made ___ for an hour.', options: ['to wait', 'wait', 'waiting'] },
+      { question: 'The teacher had the students ___ an essay.', options: ['write', 'to write', 'writing'] },
+      { question: 'Do not let them ___ you.', options: ['stop', 'to stop', 'stopping'] }
+    ]
   }
 ];

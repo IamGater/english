@@ -63,7 +63,7 @@ there|там|The bank is over there.
 zero|ноль|My number starts with zero.
 one|один|I have one sister.
 two|два|I have two brothers.
-three|три|We are three people.
+three|три|I have three brothers.
 four|четыре|The child is four years old.
 five|пять|I will come in five minutes.
 six|шесть|The lesson starts at six.
@@ -205,7 +205,7 @@ airport|аэропорт|We are going to the airport.
 bus stop|автобусная остановка|The bus stop is over there.
 bus|автобус|The bus comes at nine.
 train|поезд|The train is late.
-underground|метро|I go by underground.
+underground|метро|I take the underground to work.
 car|машина|The car is new.
 bicycle|велосипед|I ride a bicycle.
 taxi|такси|We are taking a taxi.
@@ -286,7 +286,7 @@ go|идти, ехать|I go to work by bus.
 come|приходить|Are you coming with us?
 walk|идти пешком, гулять|I walk to school.
 run|бежать|The child runs fast.
-fly|лететь|I fly to Spain tomorrow.
+fly|лететь|I am flying to Spain tomorrow.
 stay|оставаться|I am staying at home.
 live|жить|I live in Manchester.
 work|работать|He works in a bank.
@@ -338,7 +338,7 @@ dance|танцевать|She dances very well.
 sing|петь|The children sing a song.
 travel|путешествовать|I like to travel.
 sit|сидеть|We are sitting in the garden.
-stand|стоять|The car stands in front of the house.
+stand|стоять|Please stand here.
 wash|мыть, стирать|I wash the car.
 clean|убирать, чистить|I clean the flat.
 show|показывать|Show me the photo, please.
@@ -500,7 +500,7 @@ not|не|I am not tired.
 very|очень|That is very good.
 only|только|I have only five pounds.
 still|всё ещё|I am still at the office.
-already|уже|I am already ready.
+already|уже|I have already eaten.
 again|снова|He is ill again.
 together|вместе|We cook together.
 alone|один, в одиночку|I live alone.
@@ -519,4 +519,218 @@ next to|рядом с|The bank is next to the post office.
 between|между|The pharmacy is between the bank and the shop.
 until|до (о времени)|I work until five.
 about|о; примерно|We talk about the film.
+
+# Месяцы и время
+February|февраль|It is cold in February.
+March|март|Spring starts in March.
+April|апрель|It often rains in April.
+May|май|It is warm in May.
+June|июнь|Summer starts in June.
+August|август|We go on holiday in August.
+September|сентябрь|School starts in September.
+October|октябрь|It gets cool in October.
+November|ноябрь|November is often grey.
+season|время года|My favourite season is summer.
+calendar|календарь|The date is in my calendar.
+midnight|полночь|I am asleep at midnight.
+moment|момент|Just a moment, please!
+beginning|начало|It was hard at the beginning.
+end|конец|I get paid at the end of the month.
+tonight|сегодня вечером|What are you doing tonight?
+this morning|сегодня утром|I got up early this morning.
+last night|вчера вечером, прошлой ночью|I slept badly last night.
+next week|на следующей неделе|I am on holiday next week.
+at the weekend|на выходных|I play football at the weekend.
+ago|тому назад|I came here two years ago.
+every day|каждый день|I work every day.
+once|один раз, однажды|I go swimming once a week.
+twice|дважды|I eat twice a day.
+daily|ежедневный, ежедневно|I read the news daily.
+
+# Числа и количество
+thirteen|тринадцать|My brother is thirteen.
+fourteen|четырнадцать|The holiday lasts fourteen days.
+fifteen|пятнадцать|I will be there in fifteen minutes.
+sixteen|шестнадцать|She is sixteen years old.
+seventeen|семнадцать|He is seventeen.
+eighteen|восемнадцать|You can drive at eighteen.
+nineteen|девятнадцать|It costs nineteen pounds.
+forty|сорок|My father is forty.
+fifty|пятьдесят|The shirt costs fifty pounds.
+sixty|шестьдесят|An hour has sixty minutes.
+seventy|семьдесят|My grandmother is seventy.
+eighty|восемьдесят|He drives at eighty kilometres an hour.
+ninety|девяносто|The film lasts ninety minutes.
+million|миллион|A million people live in the city.
+third|третий|I live on the third floor.
+next|следующий|The next stop is the station.
+both|оба|Both children are at school.
+some|несколько, немного|I have some questions.
+more|больше|I would like more water.
+less|меньше|I eat less sugar.
+a little|немного|I speak a little English.
+a few|несколько|I have a few friends here.
+all|все, всё|All the shops are closed.
+pair|пара|I am buying a pair of shoes.
+a lot|много|I read a lot.
+
+# Страны и языки
+England|Англия|London is in England.
+Britain|Великобритания|I live in Britain.
+America|Америка|My uncle lives in America.
+Europe|Европа|France is in Europe.
+English|английский язык|I am learning English.
+Russian|русский язык|My native language is Russian.
+French|французский язык|She speaks good French.
+Spanish|испанский язык|I understand a little Spanish.
+German|немецкий язык|Do you speak German?
+world|мир|The world is big.
+place|место|This is a nice place.
+north|север|Leeds is in the north.
+south|юг|Brighton is in the south.
+east|восток|The sun rises in the east.
+west|запад|Bristol is in the west.
+
+# Люди и вещи
+cousin|двоюродный брат или сестра|My cousin lives in York.
+nephew|племянник|My nephew is five.
+niece|племянница|My niece is at school.
+grandson|внук|Their grandson is a student.
+granddaughter|внучка|Her granddaughter is ten.
+grandparents|бабушка и дедушка|My grandparents live in a village.
+twin|близнец|My sister and I are twins.
+adult|взрослый|The ticket for adults costs ten pounds.
+teenager|подросток|Teenagers like music.
+kid|ребёнок (разг.)|The kids are in the garden.
+lady|дама|The lady is waiting.
+visitor|посетитель|The museum has many visitors.
+member|член (группы)|I am a member of the club.
+problem|проблема|That is no problem.
+idea|идея|That is a good idea.
+thing|вещь|What is this thing?
+group|группа|We learn in a group.
+list|список|I am writing a list.
+card|карта, открытка|I am writing a card.
+camera|камера|The camera is new.
+toy|игрушка|The child has many toys.
+ball|мяч|The ball is round.
+radio|радио|I listen to the radio.
+motorbike|мотоцикл|He rides a motorbike.
+lorry|грузовик|The lorry is very big.
+box|коробка|The books are in the box.
+biscuit|печенье|Would you like a biscuit?
+sweets|конфеты|Children love sweets.
+pizza|пицца|I would like a pizza.
+chips|картофель фри|Fish and chips, please.
+sausage|сосиска, колбаса|I eat sausages for breakfast.
+toast|тост|I eat toast in the morning.
+snack|перекус|I need a snack.
+lemonade|лимонад|A glass of lemonade, please.
+bowl|миска|I eat soup from a bowl.
+microwave|микроволновка|Put it in the microwave.
+kettle|чайник|The kettle is on.
+
+# Глаголы на каждый день
+have breakfast|завтракать|I have breakfast at seven.
+have lunch|обедать|We have lunch at one.
+have dinner|ужинать|We have dinner together.
+go shopping|ходить за покупками|I go shopping on Saturdays.
+go to bed|ложиться спать|I go to bed at eleven.
+get home|приходить домой|I get home at six.
+do homework|делать домашнее задание|I do my homework after school.
+sell|продавать|He is selling his car.
+pack|упаковывать|I am packing my suitcase.
+come back|возвращаться|When are you coming back?
+look|смотреть, выглядеть|You look great.
+look at|смотреть на|Look at this picture!
+go away|уходить, уезжать|Do not go away!
+click|кликать, нажимать|Click here.
+put on|надевать|Put on your coat.
+take off|снимать (одежду)|Take off your shoes, please.
+sit down|садиться|Sit down, please.
+stand up|вставать|Stand up, please.
+jump|прыгать|The child jumps into the water.
+climb|лазать, взбираться|The cat climbs the tree.
+hold|держать|Hold my bag, please.
+begin|начинать|The film begins at eight.
+teach|преподавать, учить|She teaches English.
+count|считать|The child counts to ten.
+guess|угадывать|Guess who is coming!
+shut|закрывать|Shut the door, please.
+touch|трогать|Do not touch that!
+fill|наполнять|Fill the glass with water.
+add|добавлять|Add some salt.
+mix|смешивать|Mix the flour and the sugar.
+brush|чистить щёткой|I brush my teeth twice a day.
+be right|быть правым|You are right.
+have time|иметь время|Do you have time tomorrow?
+be from|быть родом из|I am from Ukraine.
+
+# Какой? Как?
+lovely|прелестный, чудесный|What a lovely day!
+perfect|идеальный|Your English is perfect.
+normal|нормальный|That is quite normal.
+favourite|любимый|Blue is my favourite colour.
+real|настоящий|Is that real gold?
+true|верный, истинный|That is true.
+false|ложный|The answer is false.
+simple|простой|The question is simple.
+clear|ясный|The water is clear.
+special|особенный|Today is a special day.
+rainy|дождливый|It is a rainy day.
+cool|прохладный; классный|The evening is cool.
+fat|толстый|The cat is fat.
+tall|высокий (о человеке)|My brother is tall.
+pretty|симпатичный|The dress is pretty.
+lucky|везучий|You are lucky!
+quick|быстрый|That was quick.
+low|низкий|The price is low.
+deep|глубокий|The lake is deep.
+round|круглый|The table is round.
+bright|яркий|The sun is bright.
+fantastic|фантастический|The film was fantastic.
+awful|ужасный|The weather is awful.
+amazing|удивительный|The view is amazing.
+really|действительно|That is really good.
+well|хорошо|She sings well.
+just|только что; просто|I have just arrived.
+too|слишком; тоже|The coffee is too hot.
+away|прочь|Go away!
+at home|дома|I am at home.
+on foot|пешком|I go to work on foot.
+up|вверх|Stand up!
+down|вниз|Sit down!
+out|наружу|Let's go out.
+perhaps|возможно|Perhaps he is ill.
+slowly|медленно|Please speak slowly.
+quickly|быстро|Come quickly!
+carefully|внимательно, осторожно|Listen carefully.
+badly|плохо|I slept badly.
+easily|легко|You can find it easily.
+
+# Полезные фразы
+How are you?|как дела?|Hello Anna, how are you?
+Pardon?|простите, что?|Pardon? I did not understand.
+No problem|без проблем|No problem, I can help you.
+Have fun|хорошо повеселиться|Have fun at the party!
+Enjoy your meal|приятного аппетита|Dinner is ready. Enjoy your meal!
+Cheers|за здоровье (тост)|Cheers! To you!
+Congratulations|поздравляю|Congratulations on your new job!
+Have a good trip|счастливого пути|Bye! Have a good trip!
+See you later|до скорого|Bye, see you later!
+See you tomorrow|до завтра|Good night, see you tomorrow!
+All the best|всего наилучшего|All the best for your exam!
+You're welcome|не за что|Thanks! — You're welcome.
+No idea|понятия не имею|Where is he? — No idea.
+Watch out|осторожно|Watch out, a car is coming!
+Get well soon|выздоравливай|You are ill? Get well soon!
+Have a nice weekend|хороших выходных|Bye! Have a nice weekend!
+That's right|верно|That's right, well done.
+Never mind|ничего страшного|Sorry! — Never mind.
+Good luck|удачи|Good luck with your test!
+Happy birthday|с днём рождения|Happy birthday, Tom!
+Nice to meet you|приятно познакомиться|I am Anna. — Nice to meet you.
+What time is it?|который час?|Excuse me, what time is it?
+I don't know|я не знаю|Where is the key? — I don't know.
+All right|хорошо, ладно|All right, let's go.
 `;
