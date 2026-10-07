@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English — английский с A1 до B2</title>
+  <meta name="description" content="Интерактивный тренажёр английского языка: словарь, грамматика, практика и точный расчёт готовности к уровням A1–B2.">
+  <script>
+    // Тему ставим сразу, до отрисовки страницы, чтобы не было вспышки
+    (function () {
+      var theme = null;
+      try {
+        var saved = JSON.parse(localStorage.getItem('english.progress'));
+        if (saved) theme = saved.theme;
+      } catch (error) {}
+      if (!theme) {
+        var prefersDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+        theme = prefersDark ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="icon-speaker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>
+    </symbol>
+  </svg>
+
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="#/">English<span>.</span></a>
+      <nav class="nav">
+        <a href="#/" data-section="home">Обзор</a>
+        <a href="#/vocab" data-section="vocab">Словарь</a>
+        <a href="#/grammar" data-section="grammar">Грамматика</a>
+        <a href="#/practice" data-section="practice">Практика</a>
+      </nav>
+      <button class="icon-button" id="settings-open-button" type="button" aria-label="Настройки" title="Настройки">
+        <svg width="20" height="20"><use href="#icon-settings"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====================== Экраны ======================
+       На странице всегда виден только один экран (см. js/main.js).
+       Тексты и списки в них подставляет JavaScript. -->
+  <main class="wrap">
+
+    <!-- Первое посещение: выбор, с чего начать (js/pages/placement.js) -->
+    <section class="screen" id="screen-welcome" hidden>
+      <div class="welcome">
+        <div class="eyebrow">Добро пожаловать</div>
+        <h1>С чего начнём?</h1>
+        <p class="muted">Здесь можно пройти путь от A1 до B2. Если вы уже учили английский, тест определит ваш уровень, и знакомый материал не придётся проходить заново.</p>
+        <div class="welcome-choices">
+          <button class="card choice" type="button" id="welcome-beginner-button">
+            <b>Начну с нуля</b>
+            <span>Обучение начнётся с первых слов уровня A1.</span>
+          </button>
+          <button class="card choice" type="button" id="welcome-test-button">
+            <b>Я уже что-то знаю</b>
+            <span>Тест от A1 до B2 определит уровень. Займёт от 5 до 20 минут.</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Обзор -->
+    <section class="screen" id="screen-home" hidden>
+      <div class="hero">
+        <div class="eyebrow">Подтверждённый уровень</div>
+        <div class="hero-level" id="home-level">A0</div>
+        <p class="muted" id="home-facts"></p>
+        <a class="btn primary big" href="#/vocab/train/all" id="home-train-link">Начать тренировку</a>
+      </div>
+      <div class="card levels" id="home-levels"></div>
+    </section>
+
+    <!-- Словарь: список слов -->
+    <section class="screen" id="screen-vocabulary" hidden>
+      <div class="page-head"><h1>Словарь</h1></div>
+      <nav class="tabs" id="vocabulary-tabs">
+        <a class="tab" data-level="A1" href="#/vocab/A1">A1<small></small></a>
+        <a class="tab" data-level="A2" href="#/vocab/A2">A2<small></small></a>
+        <a class="tab" data-level="B1" href="#/vocab/B1">B1<small></small></a>
+        <a class="tab" data-level="B2" href="#/vocab/B2">B2<small></small></a>
+      </nav>
+      <div class="toolbar">
+        <a class="btn primary" id="vocabulary-train-link">Тренировка</a>
+        <a class="btn" id="vocabulary-cards-link">Карточки</a>
+        <input class="input grow" type="search" placeholder="Поиск по слову или переводу" id="vocabulary-search">
+        <select class="input" id="vocabulary-filter">
+          <option value="all">Все слова</option>
+          <option value="new">Новые</option>
+          <option value="learning">В процессе</option>
+          <option value="due">Пора повторить</option>
+          <option value="learned">Выученные</option>
+        </select>
+      </div>
+      <div class="card word-list" id="vocabulary-list"></div>
+      <div class="card empty" id="vocabulary-empty" hidden>Ничего не найдено.</div>
+    </section>
+
+    <!-- Словарь: карточки для свободного просмотра -->
+    <section class="screen" id="screen-flashcards" hidden>
+      <div class="page-head">
+        <a class="back" id="flashcards-back-link">← Словарь</a>
+        <h1>Карточки <span id="flashcards-level"></span></h1>
+        <p class="muted">Свободный просмотр, на прогресс не влияет.</p>
+      </div>
+      <div class="card flashcard" id="flashcard">
+        <div class="question-label" id="flashcard-topic"></div>
+        <div class="word-card-english">
+          <span class="word-english"></span>
+          <button class="speak-button speak-word" type="button" aria-label="Прослушать"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+        </div>
+        <div class="flashcard-back" id="flashcard-back" hidden>
+          <div class="word-card-translation word-translation"></div>
+          <div class="word-card-example word-example">
+            <span class="word-example-text"></span>
+            <button class="speak-button speak-example" type="button" aria-label="Прослушать пример"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+          </div>
+        </div>
+        <div class="flashcard-hint" id="flashcard-hint">Нажмите, чтобы увидеть перевод</div>
+      </div>
+      <div class="row center">
+        <button class="btn" type="button" id="flashcards-previous-button">← Назад</button>
+        <span class="muted small" id="flashcards-counter"></span>
+        <button class="btn" type="button" id="flashcards-next-button">Вперёд →</button>
+        <button class="btn" type="button" id="flashcards-random-button">Случайная</button>
+      </div>
+    </section>
+
+    <!-- Тренировка слов, тест уровня и входной тест -->
+    <section class="screen" id="screen-session" hidden>
+      <div class="page-head">
+        <a class="back" id="session-back-link"></a>
+        <h1 id="session-title"></h1>
+      </div>
+      <div class="card" id="session-content"></div>
+    </section>
+
+    <!-- Грамматика: список тем -->
+    <section class="screen" id="screen-grammar" hidden>
+      <div class="page-head"><h1>Грамматика</h1></div>
+      <div id="grammar-list"></div>
+    </section>
+
+    <!-- Грамматика: урок -->
+    <section class="screen" id="screen-lesson" hidden>
+      <div class="page-head"><a class="back" href="#/grammar">← Все темы</a></div>
+      <article class="card lesson">
+        <span class="badge" id="lesson-level"></span>
+        <h1 id="lesson-title"></h1>
+        <div class="rules" id="lesson-rule"></div>
+      </article>
+      <div class="card" id="lesson-content"></div>
+    </section>
+
+    <!-- Практика: список заданий -->
+    <section class="screen" id="screen-practice" hidden>
+      <div class="page-head"><h1>Практика</h1></div>
+      <div id="practice-list"></div>
+    </section>
+
+    <!-- Практика: диалог -->
+    <section class="screen" id="screen-dialog" hidden>
+      <div class="page-head">
+        <a class="back" href="#/practice">← Практика</a>
+        <h1 id="dialog-title"></h1>
+        <p class="muted" id="dialog-scene"></p>
+      </div>
+      <div class="card">
+        <label class="checkbox-label"><input type="checkbox" id="dialog-translation-checkbox"> Показывать перевод</label>
+        <div class="chat" id="dialog-chat"></div>
+        <div id="dialog-reply"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================== Настройки ====================== -->
+  <dialog id="settings-dialog">
+    <div class="modal">
+      <header>
+        <h2>Настройки</h2>
+        <button class="icon-button" type="button" id="settings-close-button" aria-label="Закрыть">✕</button>
+      </header>
+      <div class="field">
+        <span>Тема</span>
+        <div class="segmented">
+          <button class="theme-button" type="button" data-value="auto">Авто</button>
+          <button class="theme-button" type="button" data-value="light">Светлая</button>
+          <button class="theme-button" type="button" data-value="dark">Тёмная</button>
+        </div>
+      </div>
+      <label class="field">
+        <span>Новых слов за тренировку</span>
+        <select class="input" id="settings-new-words">
+          <option>5</option><option>10</option><option>15</option><option>20</option>
+        </select>
+      </label>
+      <div class="field">
+        <span>Уровень</span>
+        <a class="btn" href="#/placement" id="settings-placement-link">Пройти входной тест</a>
+      </div>
+      <div class="field">
+        <span>Прогресс</span>
+        <div class="row">
+          <button class="btn" type="button" id="settings-export-button">Экспорт</button>
+          <button class="btn" type="button" id="settings-import-button">Импорт</button>
+          <button class="btn danger" type="button" id="settings-reset-button">Сбросить</button>
+        </div>
+      </div>
+      <input type="file" id="settings-import-file" accept="application/json,.json" hidden>
+      <!-- Числа в тексте должны совпадать с константами в js/learning.js -->
+      <details class="how-it-works">
+        <summary>Как считается прогресс</summary>
+        <ul>
+          <li>Готовность к уровню = 50% слова + 30% грамматика + 20% практика. Уровни накопительные: в A2 входит весь материал A1 и так далее.</li>
+          <li>Слово считается выученным после трёх верных ответов в три разных дня: в день знакомства, через 1 день и ещё через 3 дня. Повторные ответы в тот же день этап не повышают.</li>
+          <li>До этого слово даёт частичный вклад: 25% после первого этапа, 60% после второго. Ошибка возвращает слово на первый этап.</li>
+          <li>Выученные слова приходят на контроль через 7, 21 и 60 дней. Если пропустить повторение более чем на его интервал, слово перестаёт считаться выученным.</li>
+          <li>Тема грамматики, тест или диалог засчитываются при результате от 80%.</li>
+        </ul>
+      </details>
+    </div>
+  </dialog>
+
+  <!-- ====================== Шаблоны ======================
+       JavaScript копирует их функцией cloneTemplate() и вставляет на страницу. -->
+
+  <!-- Обзор: строка одного уровня -->
+  <template id="level-row-template">
+    <div class="level">
+      <div class="level-top">
+        <span class="level-name"></span>
+        <div class="bar"><i class="level-bar-fill"></i></div>
+        <span class="level-percent"></span>
+      </div>
+      <p class="level-remaining"></p>
+    </div>
+  </template>
+
+  <!-- Словарь: название темы и строка слова -->
+  <template id="word-topic-template">
+    <div class="word-topic"></div>
+  </template>
+
+  <template id="word-row-template">
+    <div class="word-row">
+      <button class="speak-button speak-word" type="button" aria-label="Прослушать"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      <span class="word-english"></span>
+      <span class="word-translation"></span>
+      <span class="stage-dots"><i></i><i></i><i></i></span>
+      <span class="word-example">
+        <span class="word-example-text"></span>
+        <button class="speak-button speak-example" type="button" aria-label="Прослушать пример"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      </span>
+    </div>
+  </template>
+
+  <!-- Карточка слова: показывается при знакомстве со словом и после ответа -->
+  <template id="word-card-template">
+    <div class="word-card">
+      <div class="word-card-english">
+        <span class="word-english"></span>
+        <button class="speak-button speak-word" type="button" aria-label="Прослушать"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      </div>
+      <div class="word-card-translation word-translation"></div>
+      <div class="word-card-example word-example">
+        <span class="word-example-text"></span>
+        <button class="speak-button speak-example" type="button" aria-label="Прослушать пример"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Списки тем грамматики и заданий практики: группа одного уровня и пункт списка -->
+  <template id="level-group-template">
+    <section>
+      <div class="level-heading">
+        <h2 class="group-level"></h2>
+        <span class="badge group-count"></span>
+      </div>
+      <div class="list"></div>
+    </section>
+  </template>
+
+  <template id="list-item-template">
+    <a class="item">
+      <span class="item-number"></span>
+      <span class="item-title"><span class="item-title-text"></span><small class="item-description"></small></span>
+      <span class="item-state"></span>
+    </a>
+  </template>
+
+  <!-- Урок: блок перед началом упражнений -->
+  <template id="lesson-start-template">
+    <div>
+      <h2 class="flush">Упражнения</h2>
+      <p class="muted lesson-info"></p>
+      <button class="btn primary start-button" type="button">Начать</button>
+    </div>
+  </template>
+
+  <!-- Тренировка: нечего учить и повторять -->
+  <template id="nothing-to-train-template">
+    <div class="empty">
+      <p><b>На сегодня всё сделано.</b></p>
+      <p>Новых слов в этом разделе не осталось, а повторения ещё не подошли. Этап слова повышается только в день планового повторения — возвращайтесь завтра.</p>
+      <a class="btn" href="#/">К обзору</a>
+    </div>
+  </template>
+
+  <!-- Входной тест: правила перед началом. Числа должны совпадать с константами в js/pages/placement.js -->
+  <template id="placement-intro-template">
+    <div>
+      <h2 class="flush">Как проходит тест</h2>
+      <ul class="plain-list">
+        <li>Тест идёт по уровням от A1 к B2. На каждом уровне 16 вопросов: слова и грамматика.</li>
+        <li>Уровень зачтён, если верных ответов не меньше 80%. После первого незачтённого уровня тест заканчивается.</li>
+        <li>Не угадывайте: если не знаете ответ, нажмите «Не знаю». Так результат будет точнее.</li>
+        <li>Правильные ответы во время теста не показываются.</li>
+      </ul>
+      <button class="btn primary start-button" type="button">Начать тест</button>
+    </div>
+  </template>
+
+  <!-- Викторина: общий каркас (js/quiz.js) -->
+  <template id="quiz-template">
+    <div class="quiz">
+      <div class="quiz-top">
+        <div class="bar"><i class="quiz-progress"></i></div>
+        <span class="quiz-counter"></span>
+      </div>
+      <div class="quiz-body"></div>
+      <!-- Кнопка видна только в режиме экзамена (входной тест) -->
+      <button class="btn skip-button" type="button" hidden>Не знаю</button>
+      <div class="quiz-feedback"></div>
+    </div>
+  </template>
+
+  <!-- Знакомство с новым словом -->
+  <template id="new-word-template">
+    <div>
+      <div class="question-label"></div>
+      <div class="word-card-place"></div>
+      <div class="row">
+        <button class="btn primary continue-button" type="button">Запомнил, дальше</button>
+        <button class="btn already-know-button" type="button">Уже знаю — проверить</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Вопрос: выбрать перевод английского слова -->
+  <template id="translate-question-template">
+    <div>
+      <div class="question-label">Выберите перевод</div>
+      <div class="question-text">
+        <span class="word-english"></span>
+        <button class="speak-button speak-word" type="button" aria-label="Прослушать"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      </div>
+      <div class="options"></div>
+    </div>
+  </template>
+
+  <!-- Вопрос: выбрать один вариант (слово или грамматика) -->
+  <template id="choice-question-template">
+    <div>
+      <div class="question-label"></div>
+      <div class="question-text"><span class="text-before"></span><span class="gap" hidden></span><span class="text-after"></span></div>
+      <div class="options"></div>
+    </div>
+  </template>
+
+  <template id="option-template">
+    <button class="option" type="button"></button>
+  </template>
+
+  <!-- Вопрос: напечатать слово по-английски -->
+  <template id="typing-question-template">
+    <div>
+      <div class="question-label">Напишите по-английски</div>
+      <div class="question-text"></div>
+      <div class="question-hint">Первая буква: <b class="hint-first-letter"></b> · символов: <span class="hint-length"></span></div>
+      <div class="typing-row">
+        <input class="input answer-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Слово по-английски">
+      </div>
+      <button class="btn primary check-button" type="button">Проверить</button>
+    </div>
+  </template>
+
+  <!-- Вопрос: вписать слово в пропуск -->
+  <template id="gap-question-template">
+    <div>
+      <div class="question-label">Заполните пропуск</div>
+      <div class="question-text sentence"><span class="text-before"></span><input class="input answer-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="text-after"></span></div>
+      <button class="btn primary check-button" type="button">Проверить</button>
+    </div>
+  </template>
+
+  <!-- Что показываем после ответа -->
+  <template id="feedback-template">
+    <div>
+      <div class="feedback">
+        <div class="feedback-title"></div>
+        <div class="feedback-details"></div>
+        <div class="feedback-note"></div>
+      </div>
+      <button class="btn primary next-button" type="button">Дальше</button>
+    </div>
+  </template>
+
+  <!-- Правильный ответ грамматического упражнения -->
+  <template id="grammar-answer-template">
+    <div><span class="text-before"></span><b class="correct-answer"></b><span class="text-after"></span></div>
+  </template>
+
+  <!-- Итог тренировки, урока, теста или диалога -->
+  <template id="result-template">
+    <div class="result">
+      <div class="result-score"></div>
+      <div class="result-title"></div>
+      <p class="muted result-text"></p>
+      <div class="row">
+        <button class="btn again-button" type="button">Пройти ещё раз</button>
+        <a class="btn primary result-link"></a>
+      </div>
+    </div>
+  </template>
+
+  <!-- Диалог: реплика и выбор ответа -->
+  <template id="bubble-template">
+    <div class="bubble">
+      <div>
+        <span class="bubble-text"></span>
+        <button class="speak-button" type="button" aria-label="Прослушать"><svg width="18" height="18"><use href="#icon-speaker"/></svg></button>
+      </div>
+      <div class="bubble-translation"></div>
+    </div>
+  </template>
+
+  <template id="reply-template">
+    <div>
+      <div class="question-label">Ваша реплика</div>
+      <div class="options one-column"></div>
+    </div>
+  </template>
+
+  <noscript><p class="wrap">Для работы сайта нужен JavaScript.</p></noscript>
+
+  <!-- Данные: слова, грамматика и диалоги по уровням -->
+  <script src="js/data/words-a1.js"></script>
+  <script src="js/data/words-a2.js"></script>
+  <script src="js/data/words-b1.js"></script>
+  <script src="js/data/words-b2.js"></script>
+  <script src="js/data/grammar-a1.js"></script>
+  <script src="js/data/grammar-a2.js"></script>
+  <script src="js/data/grammar-b1.js"></script>
+  <script src="js/data/grammar-b2.js"></script>
+  <script src="js/data/dialogs-a1.js"></script>
+  <script src="js/data/dialogs-a2.js"></script>
+  <script src="js/data/dialogs-b1.js"></script>
+  <script src="js/data/dialogs-b2.js"></script>
+
+  <!-- Общий код -->
+  <script src="js/helpers.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/learning.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/quiz.js"></script>
+
+  <!-- Экраны -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/vocabulary.js"></script>
+  <script src="js/pages/grammar.js"></script>
+  <script src="js/pages/practice.js"></script>
+  <script src="js/pages/placement.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
