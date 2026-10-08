@@ -80,6 +80,21 @@ p { margin: 0 0 .8rem; }
   width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; cursor: pointer;
 }
 
+/* Аккаунт в шапке: цвет точки — состояние синхронизации */
+[data-state="off"] { --sync-color: var(--muted); }
+[data-state="busy"] { --sync-color: var(--accent); }
+[data-state="ok"] { --sync-color: var(--ok); }
+[data-state="error"] { --sync-color: var(--bad); }
+.account-indicator { position: relative; padding: 0; font: inherit; font-weight: 700; }
+.account-indicator.loading { visibility: hidden; }
+.account-indicator svg { color: var(--muted); }
+.account-indicator img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+.sync-dot {
+  position: absolute; right: -4px; bottom: -4px; width: 12px; height: 12px;
+  border-radius: 50%; border: 2px solid var(--bg); background: var(--sync-color);
+}
+[data-state="off"] > .sync-dot { display: none; }
+
 .wrap { max-width: 960px; margin: 0 auto; padding: 28px 16px 80px; }
 
 /* ---------- Базовые блоки ---------- */
@@ -149,6 +164,10 @@ p { margin: 0 0 .8rem; }
 .field { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .field > span { font-weight: 600; font-size: .95rem; }
 .field-note { flex-basis: 100%; margin: 0; font-size: .85rem; overflow-wrap: anywhere; }
+.field-note[data-state]::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px;
+  border-radius: 50%; background: var(--sync-color);
+}
 .welcome-login { margin-top: 22px; font-size: .95rem; }
 .link-button { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }

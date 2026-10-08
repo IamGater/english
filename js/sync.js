@@ -24,6 +24,9 @@ let stopCloudListener = null;
 let cloudSaveTimer = null;
 let hasUnsentChanges = false;
 let syncStatus = '';
+// 'off' — без входа, 'busy' — идёт обмен или есть неотправленное, 'ok' — всё в облаке, 'error' — сбой
+let syncState = 'off';
+let isPhotoBroken = false;
 
 // Вход работает только на сайте (http/https) и только когда заполнен firebase-config.js
 function isSyncAvailable() {
@@ -54,7 +57,7 @@ function startSync() {
       firebase.auth().onAuthStateChanged(onUserChanged);
     })
     .catch(function () {
-      setSyncStatus('Нет связи с сервером');
+      setSyncStatus('Нет связи с сервером', 'error');
     });
 }
 
@@ -66,16 +69,17 @@ function onUserChanged(user) {
   isSyncReady = true;
   cloudUser = user;
   cloudDocument = null;
+  isPhotoBroken = false;
 
   if (user) {
     cloudDocument = firebase.firestore().collection('users').doc(user.uid);
     // includeMetadataChanges нужен, чтобы узнать, когда данные из кэша подтвердит сервер
     stopCloudListener = cloudDocument.onSnapshot({ includeMetadataChanges: true }, onCloudSnapshot, function () {
-      setSyncStatus('Не удалось получить прогресс');
+      setSyncStatus('Не удалось получить прогресс', 'error');
     });
-    setSyncStatus('Синхронизация…');
+    setSyncStatus('Синхронизация…', 'busy');
   } else {
-    setSyncStatus('');
+    setSyncStatus('', 'off');
   }
 }
 
@@ -106,12 +110,12 @@ function onCloudSnapshot(snapshot) {
     cloudSaveTimer = null;
     hasUnsentChanges = false;
     showSyncedProgress();
-    setSyncStatus('Синхронизировано');
+    setSyncStatus('Синхронизировано', 'ok');
   } else if (!cloudProgress || cloudProgress.updatedAt < progress.updatedAt) {
     // Здесь прогресс свежее (например, занимались без связи)
     saveToCloud();
   } else {
-    setSyncStatus('Синхронизировано');
+    setSyncStatus('Синхронизировано', 'ok');
   }
 }
 
@@ -139,15 +143,15 @@ function saveToCloud() {
     return;
   }
 
-  setSyncStatus('Сохранение…');
+  setSyncStatus('Сохранение…', 'busy');
   // Прогресс лежит одной строкой: у Firestore есть предел на число полей в документе,
   // а слов тысячи. Без связи запись ждёт в очереди и уйдёт, когда связь появится.
   cloudDocument.set({ data: JSON.stringify(progress), updatedAt: progress.updatedAt })
     .then(function () {
-      setSyncStatus('Синхронизировано');
+      setSyncStatus('Синхронизировано', 'ok');
     })
     .catch(function () {
-      setSyncStatus('Не удалось сохранить прогресс');
+      setSyncStatus('Не удалось сохранить прогресс', 'error');
     });
 }
 
@@ -158,7 +162,7 @@ function markUnsentChanges() {
     return;
   }
   hasUnsentChanges = true;
-  setSyncStatus('Изменения ждут отправки');
+  setSyncStatus('Изменения ждут отправки', 'busy');
   if (!cloudSaveTimer) {
     cloudSaveTimer = setTimeout(saveToCloud, CLOUD_SAVE_DELAY);
   }
@@ -297,8 +301,9 @@ function signOut() {
 
 /* ================= Окно настроек и приветствие ================= */
 
-function setSyncStatus(status) {
+function setSyncStatus(status, state) {
   syncStatus = status;
+  syncState = state;
   updateAccountControls();
 }
 
@@ -316,9 +321,49 @@ function updateAccountControls() {
     status.textContent = (cloudUser.email || 'Вход выполнен') + (syncStatus ? ' · ' + syncStatus : '');
   } else {
     button.textContent = 'Войти через Google';
-    status.textContent = syncStatus || 'Войдите, чтобы прогресс был один на всех устройствах.';
+    status.textContent = syncStatus || 'Прогресс хранится только на этом устройстве. Войдите, чтобы он был один на всех устройствах.';
   }
+  status.dataset.state = syncState;
+  updateAccountIndicator();
 }
+
+// Значок в шапке: без входа — перечёркнутое облако, после входа — фото и точка состояния
+function updateAccountIndicator() {
+  const indicator = document.getElementById('account-indicator');
+  const photo = document.getElementById('account-indicator-photo');
+  const letter = document.getElementById('account-indicator-letter');
+  const hasPhoto = Boolean(cloudUser && cloudUser.photoURL) && !isPhotoBroken;
+
+  indicator.hidden = !isSyncAvailable();
+  // Пока неизвестно, выполнен ли вход, значок не показываем: иначе он мигнул бы «без входа»
+  indicator.classList.toggle('loading', !isSyncReady && syncState === 'off');
+  indicator.dataset.state = syncState;
+
+  document.getElementById('account-indicator-icon').toggleAttribute('hidden', Boolean(cloudUser));
+  photo.hidden = !hasPhoto;
+  letter.hidden = !cloudUser || hasPhoto;
+  if (hasPhoto && photo.getAttribute('src') !== cloudUser.photoURL) {
+    photo.src = cloudUser.photoURL;
+  }
+
+  let hint = 'Прогресс хранится только на этом устройстве. Нажмите, чтобы войти';
+  if (cloudUser) {
+    const name = cloudUser.email || cloudUser.displayName || 'Аккаунт';
+    letter.textContent = name[0].toUpperCase();
+    hint = name + ' · ' + syncStatus;
+  } else if (syncStatus) {
+    hint = syncStatus;
+  }
+  indicator.title = hint;
+  indicator.setAttribute('aria-label', hint);
+}
+
+document.getElementById('account-indicator').addEventListener('click', openSettings);
+// Фото не загрузилось — показываем первую букву адреса
+document.getElementById('account-indicator-photo').addEventListener('error', function () {
+  isPhotoBroken = true;
+  updateAccountIndicator();
+});
 
 document.getElementById('account-button').addEventListener('click', function () {
   if (cloudUser) {

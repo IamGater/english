@@ -34,6 +34,9 @@
     <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>
     </symbol>
+    <symbol id="icon-cloud-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22.6 17A5 5 0 0 0 18 10h-1.3a8 8 0 0 0-7-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3M2 2l20 20"/>
+    </symbol>
   </svg>
 
   <header class="top">
@@ -50,6 +53,13 @@
       </a>
       <button class="icon-button" id="settings-open-button" type="button" aria-label="Настройки" title="Настройки">
         <svg width="20" height="20"><use href="#icon-settings"/></svg>
+      </button>
+      <!-- Аккаунт: фото и цветная точка показывают, сохраняется ли прогресс в облако (js/sync.js) -->
+      <button class="icon-button account-indicator" id="account-indicator" type="button" hidden>
+        <svg width="20" height="20" id="account-indicator-icon"><use href="#icon-cloud-off"/></svg>
+        <img id="account-indicator-photo" alt="" referrerpolicy="no-referrer" hidden>
+        <span id="account-indicator-letter" hidden></span>
+        <i class="sync-dot"></i>
       </button>
     </div>
   </header>
