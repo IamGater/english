@@ -117,7 +117,10 @@ document.getElementById('settings-import-file').addEventListener('change', funct
 });
 
 document.getElementById('settings-reset-button').addEventListener('click', function () {
-  if (!confirm('Удалить весь прогресс? Это действие нельзя отменить.')) {
+  const question = cloudUser
+    ? 'Удалить весь прогресс на всех устройствах? Это действие нельзя отменить.'
+    : 'Удалить весь прогресс? Это действие нельзя отменить.';
+  if (!confirm(question)) {
     return;
   }
   resetProgress();

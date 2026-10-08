@@ -148,6 +148,9 @@ p { margin: 0 0 .8rem; }
 .modal h2 { margin: 0; }
 .field { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .field > span { font-weight: 600; font-size: .95rem; }
+.field-note { flex-basis: 100%; margin: 0; font-size: .85rem; overflow-wrap: anywhere; }
+.welcome-login { margin-top: 22px; font-size: .95rem; }
+.link-button { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .segmented button { font: inherit; font-size: .9rem; border: 0; background: transparent; color: var(--muted); padding: 7px 14px; cursor: pointer; }
 .segmented button.active { background: var(--surface-2); color: var(--text); font-weight: 600; }

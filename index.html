@@ -75,6 +75,10 @@
             <span>Тест от A1 до B2 определит уровень. Займёт от 5 до 20 минут.</span>
           </button>
         </div>
+        <p class="welcome-login muted" id="welcome-login" hidden>
+          Уже занимались на другом устройстве?
+          <button class="link-button" type="button" id="welcome-login-button">Войти через Google</button>
+        </p>
       </div>
     </section>
 
@@ -312,6 +316,11 @@
       <div class="field">
         <span>Уровень</span>
         <a class="btn" href="#/placement" id="settings-placement-link">Пройти входной тест</a>
+      </div>
+      <div class="field" id="account-field" hidden>
+        <span>Аккаунт</span>
+        <button class="btn" type="button" id="account-button">Войти через Google</button>
+        <p class="field-note muted" id="account-status"></p>
       </div>
       <div class="field">
         <span>Прогресс</span>
@@ -684,6 +693,8 @@
   <script src="js/pages/stats.js"></script>
   <script src="js/pages/placement.js"></script>
   <script src="js/settings.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/sync.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

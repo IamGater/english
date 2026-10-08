@@ -44,7 +44,33 @@ js/
   pages/           экраны: home, vocabulary, grammar, practice, listening (аудирование и диктант), reading, exam (пробный экзамен),
                    mistakes (работа над ошибками), stats (статистика), placement (приветствие и входной тест)
   settings.js      окно настроек
+  firebase-config.js   настройки проекта Firebase (пока пусто — вход отключён)
+  sync.js          вход через Google и синхронизация прогресса
   main.js          навигация по адресу после #
 ```
 
 Прогресс хранится в `localStorage` под ключом `english.progress`. В настройках (кнопка в шапке) есть тема, экспорт, импорт и сброс.
+
+## Вход через Google и синхронизация
+
+После входа прогресс хранится ещё и в Firebase (Firestore, документ `users/<uid>`) и одинаков на всех устройствах. В облако он уходит в конце урока, при переходе на другую страницу и при сворачивании вкладки. Побеждает более свежая версия; при первом входе на устройстве местный прогресс объединяется с облачным. Без входа сайт работает как раньше. Вход работает только на сайте (http/https), не из файла на диске.
+
+Настройка (один раз, бесплатный тариф Spark):
+
+1. На [console.firebase.google.com](https://console.firebase.google.com) создать проект (Google Analytics не нужна).
+2. **Authentication → Sign-in method → Google** — включить.
+3. **Authentication → Settings → Authorized domains** — добавить адрес сайта (например, `iamgater.github.io`).
+4. **Firestore Database → Create database** (production mode) и на вкладке **Rules** вставить:
+
+   ```
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userId} {
+         allow read, write: if request.auth != null && request.auth.uid == userId;
+       }
+     }
+   }
+   ```
+
+5. **Project settings → Your apps → Web (`</>`)** — зарегистрировать приложение и скопировать `apiKey`, `authDomain`, `projectId`, `appId` в `js/firebase-config.js`.

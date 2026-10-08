@@ -13,6 +13,7 @@ const STORAGE_KEY = 'english.progress';
 //   exams        — лучший результат пробного экзамена по каждому уровню
 //   theme        — 'light', 'dark' или null (как в системе)
 //   hasSeenWelcome — показывали ли уже приветствие с выбором «с нуля / уже знаю»
+//   updatedAt    — когда прогресс меняли в последний раз (нужно для синхронизации между устройствами)
 let progress = createEmptyProgress();
 
 function createEmptyProgress() {
@@ -26,9 +27,15 @@ function createEmptyProgress() {
     exams: {},
     theme: null,
     newWordsPerSession: 10,
-    hasSeenWelcome: false
+    hasSeenWelcome: false,
+    updatedAt: 0
   };
 }
+
+// Сюда sync.js подставляет свои функции: первая вызывается при каждом сохранении,
+// вторая — в конце урока, когда накопленные изменения пора отправить в облако
+let onProgressSaved = null;
+let onLessonFinished = null;
 
 function loadProgress() {
   try {
@@ -42,7 +49,17 @@ function loadProgress() {
   }
 }
 
+// Сохраняет изменение, сделанное на этом устройстве
 function saveProgress() {
+  progress.updatedAt = Date.now();
+  writeProgress();
+  if (onProgressSaved) {
+    onProgressSaved();
+  }
+}
+
+// Записывает прогресс в хранилище, не меняя время изменения (так сохраняется прогресс из облака)
+function writeProgress() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch (error) {
