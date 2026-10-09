@@ -6,11 +6,20 @@
 const MAX_MISTAKE_WORDS = 15;
 const MAX_MISTAKE_EXERCISES = 10;
 
+// Вопросы вроде «Выберите правильное предложение:» одинаковы в разных упражнениях (без пропуска ___),
+// поэтому к ним добавляем правильный ответ, чтобы ошибки не путались
+function getExerciseKey(exercise) {
+  if (exercise.question.indexOf('___') === -1) {
+    return exercise.question + ' ' + getCorrectAnswer(exercise);
+  }
+  return exercise.question;
+}
+
 // Вызывается из викторины после неверного ответа
 function rememberMistake(question) {
   if (question.type === 'grammar') {
     // У упражнений нет своего номера, поэтому запоминаем их по тексту вопроса
-    const key = question.exercise.question;
+    const key = getExerciseKey(question.exercise);
     progress.grammarMistakes[key] = (progress.grammarMistakes[key] || 0) + 1;
   } else if (question.word) {
     const wordId = question.word.id;
@@ -20,7 +29,7 @@ function rememberMistake(question) {
 
 function forgetMistake(question) {
   if (question.type === 'grammar') {
-    delete progress.grammarMistakes[question.exercise.question];
+    delete progress.grammarMistakes[getExerciseKey(question.exercise)];
   } else if (question.word) {
     delete progress.wordMistakes[question.word.id];
   }
@@ -44,7 +53,7 @@ function getMistakeExercises() {
   const exercises = [];
   for (const lesson of GRAMMAR) {
     for (const exercise of lesson.exercises) {
-      if (progress.grammarMistakes[exercise.question]) {
+      if (progress.grammarMistakes[getExerciseKey(exercise)]) {
         exercises.push(exercise);
       }
     }

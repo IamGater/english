@@ -1,0 +1,135 @@
+// Дополнительные упражнения к темам B2 (добавляются к grammar-b2.js в content.js).
+const GRAMMAR_EXTRA_B2 = {
+  'b2-third-conditional': [
+    { question: 'If we had left earlier, we ___ have missed the train.', answer: "wouldn't", alsoCorrect: ['would not'] },
+    { question: 'If she had known the truth, she ___ have been angry.', answer: 'would' },
+    { question: 'If I ___ seen him, I would have said hello. (have)', answer: 'had' },
+    { question: 'They would have won if they ___ trained harder.', options: ['had', 'would have', 'have'] },
+    { question: 'If you had asked me, I ___ have helped you.', options: ['would', 'had', 'will'] },
+    { question: 'He would not have failed if he ___ studied.', answer: 'had' },
+    { question: 'If it hadn\'t rained, we ___ gone to the beach.', options: ['would have', 'will have', 'had'] },
+    { question: 'If I had taken the job, I would ___ moved to Berlin. (have)', answer: 'have' },
+    { question: 'Выберите правильное предложение:', options: ['If I had known, I would have told you.', 'If I would have known, I had told you.', 'If I knew, I would have told you.'] },
+    { question: 'Would you have gone if they ___ invited you?', options: ['had', 'would have', 'have'] }
+  ],
+  'b2-narrative-tenses': [
+    { question: 'When I arrived, my friends ___ already left.', answer: 'had' },
+    { question: 'He was out of breath because he had been ___. (run)', answer: 'running' },
+    { question: 'She ___ cooking when the lights went out.', options: ['was', 'had', 'has'] },
+    { question: 'I knew her face. I ___ her somewhere before.', options: ['had seen', 'saw', 'have seen'] },
+    { question: 'By the time we got to the cinema, the film ___.', options: ['had started', 'started', 'was starting'] },
+    { question: 'They ___ been waiting for two hours when the plane finally landed.', answer: 'had' },
+    { question: 'After he had ___ his homework, he watched TV. (finish)', answer: 'finished' },
+    { question: 'While we ___ having dinner, someone knocked on the door.', options: ['were', 'had', 'did'] },
+    { question: 'She had never ___ snow before she moved to Canada. (see)', answer: 'seen' },
+    { question: 'The ground was wet because it ___ rained all night.', options: ['had', 'was', 'has'] }
+  ],
+  'b2-modals-deduction': [
+    { question: 'She has been working all day. She ___ be exhausted.', options: ['must', "can't", 'might not to'] },
+    { question: 'That ___ be Tom — he is in Spain right now.', options: ["can't", 'must', 'should'] },
+    { question: 'They ___ have left already. I am not sure.', options: ['may', 'must', "can't"] },
+    { question: 'He must ___ forgotten our appointment. (have)', answer: 'have' },
+    { question: 'The streets are wet. It must ___ rained. (have)', answer: 'have' },
+    { question: 'I can\'t find my wallet. I might ___ it at the shop. (leave)', answer: 'have left' },
+    { question: 'She ___ be home yet. Her car isn\'t outside.', options: ["can't", 'must', 'will'] },
+    { question: 'You ___ have seen him. He was on a different continent!', options: ["can't", 'must', 'should'] },
+    { question: 'The phone is ringing. It ___ be Anna.', options: ['could', "couldn't have", 'must have'] },
+    { question: 'The door is locked from inside. He ___ have gone out.', options: ["can't", 'must', 'might'] }
+  ],
+  'b2-passive-advanced': [
+    { question: 'I need to have my car ___. (service)', answer: 'serviced' },
+    { question: 'She is believed ___ left the country. (have)', answer: 'to have' },
+    { question: 'They had their windows ___ last week. (clean)', answer: 'cleaned' },
+    { question: 'It is reported ___ the president will resign.', answer: 'that' },
+    { question: 'He is known ___ a talented painter.', options: ['to be', 'being', 'be'] },
+    { question: 'We are getting our flat ___ at the moment.', options: ['painted', 'paint', 'painting'] },
+    { question: 'She had her purse ___ on the train.', options: ['stolen', 'steal', 'stole'] },
+    { question: 'The house is said ___ haunted.', options: ['to be', 'be', 'being'] },
+    { question: 'He is expected ___ the contract tomorrow. (sign)', answer: 'to sign' },
+    { question: 'I\'m going to have my hair ___. (cut)', answer: 'cut' }
+  ],
+  'b2-wishes': [
+    { question: 'I wish I ___ a car. (have)', answer: 'had' },
+    { question: 'She wishes she ___ taller. (be)', answer: 'were', alsoCorrect: ['was'] },
+    { question: 'I wish I ___ known about it earlier.', answer: 'had' },
+    { question: 'If only he ___ listen to me!', answer: 'would' },
+    { question: 'I wish you ___ so loud.', options: ["weren't", "wouldn't to be", "don't be"] },
+    { question: 'He wishes he ___ gone to the party. (have)', answer: 'had' },
+    { question: 'I wish I ___ speak Japanese.', options: ['could', 'can', 'will'] },
+    { question: 'If only I ___ more money now!', options: ['had', 'have', 'would have'] },
+    { question: 'We wish it ___ stop raining.', options: ['would', 'will', 'did'] },
+    { question: 'I wish I ___ that to her yesterday. (not say)', options: ["hadn't said", "didn't say", "wouldn't say"] }
+  ],
+  'b2-future-forms': [
+    { question: 'At this time next week I will be ___ in Spain. (travel)', answer: 'travelling', alsoCorrect: ['traveling'] },
+    { question: 'By Friday I will have ___ the project. (complete)', answer: 'completed' },
+    { question: 'In ten years she ___ have become a doctor.', options: ['will', 'is', 'would be'] },
+    { question: 'Don\'t phone at six. I ___ be cooking.', options: ['will', 'am going', 'have'] },
+    { question: 'By the end of the year they ___ lived here for a decade.', options: ['will have', 'will be', 'would'] },
+    { question: 'This time tomorrow we ___ flying to New York.', options: ['will be', 'will have', 'are going'] },
+    { question: 'By next month, he will have ___ here for five years. (work)', answer: 'worked' },
+    { question: 'I\'ll call you when I ___ home.', options: ['get', 'will get', 'am getting to'] },
+    { question: 'She will have ___ before you arrive. (leave)', answer: 'left' },
+    { question: 'Tomorrow at noon I ___ sitting in the exam hall.', answer: 'will be' }
+  ],
+  'b2-linking-words': [
+    { question: '___ being tired, he continued to work.', options: ['Despite', 'Although', 'However'] },
+    { question: '___ she was ill, she went to work.', options: ['Although', 'Despite', 'In spite'] },
+    { question: 'The hotel was cheap. ___, it was very clean.', options: ['Moreover', 'Although', 'Despite'] },
+    { question: 'He didn\'t study. ___, he passed the exam.', options: ['Nevertheless', 'Because', 'Whereas'] },
+    { question: 'I\'ll lend you the money ___ you pay me back soon. (при условии)', answer: 'provided', alsoCorrect: ['as long as', 'providing'] },
+    { question: 'Take an umbrella ___ it rains.', options: ['in case', 'unless', 'despite'] },
+    { question: '___ he is rich, he is very generous.', options: ['Although', 'Because', 'Therefore'] },
+    { question: 'She was late ___ the traffic. (из-за)', options: ['because of', 'although', 'in spite'] },
+    { question: 'I was tired. ___, I went to bed early. (поэтому)', options: ['Therefore', 'However', 'Although'] },
+    { question: 'Some people like winter, ___ others prefer summer.', options: ['while', 'despite', 'unless'] }
+  ],
+  'b2-reporting-verbs': [
+    { question: 'She admitted ___ the vase. (break)', answer: 'breaking', alsoCorrect: ['to breaking'] },
+    { question: 'He promised ___ me soon. (call)', answer: 'to call' },
+    { question: 'They accused him ___ lying. (of)', answer: 'of' },
+    { question: 'She warned me ___ touch the wire.', options: ['not to', "don't", 'to not to'] },
+    { question: 'He insisted ___ paying for dinner.', options: ['on', 'to', 'for'] },
+    { question: 'The doctor advised him ___ smoking.', options: ['to stop', 'stopping', 'stop'] },
+    { question: 'She congratulated me ___ passing the exam.', options: ['on', 'for', 'about'] },
+    { question: 'He told me ___ wait outside.', options: ['to', 'that', 'me'] },
+    { question: 'She asked me if I ___ coffee.', options: ['wanted', 'want', 'did want'] },
+    { question: 'He suggested ___ a break. (take)', answer: 'taking' }
+  ],
+  'b2-inversion-emphasis': [
+    { question: 'Rarely ___ she complain about anything.', answer: 'does' },
+    { question: 'Seldom ___ I seen such a mess.', answer: 'have' },
+    { question: 'No sooner had he left ___ it started to rain.', answer: 'than' },
+    { question: 'Only after the meeting ___ I realise my mistake.', options: ['did', 'I did', 'have'] },
+    { question: '___ had we sat down when the phone rang.', options: ['Hardly', 'Hard', 'Hardy'] },
+    { question: 'Under no circumstances ___ you open this door.', options: ['should', 'you should', 'are'] },
+    { question: 'What she wanted ___ some peace and quiet.', answer: 'was' },
+    { question: 'Little ___ he know that she was watching him.', answer: 'did' },
+    { question: 'It was in Paris ___ they first met.', options: ['that', 'what', 'who'] },
+    { question: 'Not until midnight ___ the guests leave.', options: ['did', 'have', 'were'] }
+  ],
+  'b2-participle-clauses': [
+    { question: '___ the door, he went in. (open)', answer: 'Opening' },
+    { question: '___ by the noise, she woke up. (disturb)', answer: 'Disturbed' },
+    { question: '___ a letter, he heard a knock. (write)', answer: 'Writing' },
+    { question: 'The girl ___ next to me is my cousin.', options: ['sitting', 'sat', 'sits'] },
+    { question: 'The window ___ by the storm needs to be replaced.', options: ['broken', 'breaking', 'broke'] },
+    { question: '___ eaten, they went for a walk.', options: ['Having', 'Had', 'Have'] },
+    { question: 'Not ___ the answer, he stayed silent. (know)', answer: 'knowing' },
+    { question: 'The people ___ in the queue were angry.', options: ['waiting', 'waited', 'wait'] },
+    { question: '___ in a hurry, she forgot her bag. (be)', answer: 'Being' },
+    { question: 'The cake ___ on the table is for you.', options: ['placed', 'placing', 'place'] }
+  ],
+  'b2-causative-verbs': [
+    { question: 'The boss made them ___ overtime. (work)', answer: 'work' },
+    { question: 'She let the children ___ outside. (play)', answer: 'play' },
+    { question: 'I got my sister ___ my homework. (check)', answer: 'to check' },
+    { question: 'He had his assistant ___ the documents.', options: ['bring', 'to bring', 'bringing'] },
+    { question: 'The film made me ___.', options: ['cry', 'to cry', 'crying'] },
+    { question: 'They were made ___ the room. (leave)', answer: 'to leave' },
+    { question: 'My mother lets me ___ my friends at home.', options: ['invite', 'to invite', 'inviting'] },
+    { question: 'I\'ll get him ___ you back.', options: ['to call', 'call', 'calling'] },
+    { question: 'The teacher made us ___ the poem.', options: ['learn', 'to learn', 'learning'] },
+    { question: 'They won\'t let you ___ without a ticket.', options: ['in', 'to in', 'entering'] }
+  ]
+};

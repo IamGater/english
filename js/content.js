@@ -13,6 +13,22 @@ addWords('B1', WORDS_B1);
 addWords('B2', WORDS_B2);
 
 const GRAMMAR = [].concat(GRAMMAR_A1, GRAMMAR_A2, GRAMMAR_B1, GRAMMAR_B2);
+
+// К упражнениям каждой темы добавляем дополнительные из grammar-extra-*.js: за одну попытку
+// задаётся лишь часть банка, поэтому предложения в разных попытках отличаются.
+addExtraExercises(GRAMMAR_EXTRA_A1);
+addExtraExercises(GRAMMAR_EXTRA_A2);
+addExtraExercises(GRAMMAR_EXTRA_B1);
+addExtraExercises(GRAMMAR_EXTRA_B2);
+
+function addExtraExercises(extraByLessonId) {
+  for (const lesson of GRAMMAR) {
+    const extra = extraByLessonId[lesson.id];
+    if (extra) {
+      lesson.exercises.push(...extra);
+    }
+  }
+}
 const DIALOGS = [].concat(DIALOGS_A1, DIALOGS_A2, DIALOGS_B1, DIALOGS_B2);
 const LISTENING = [].concat(LISTENING_A1, LISTENING_A2, LISTENING_B1, LISTENING_B2);
 const READING = [].concat(READING_A1, READING_A2, READING_B1, READING_B2);

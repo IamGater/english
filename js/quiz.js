@@ -17,6 +17,9 @@
 // Викторина на странице всегда одна, её состояние лежит здесь
 let quiz = null;
 
+// Сколько миллисекунд показываем верный ответ, прежде чем перейти к следующему вопросу
+const CORRECT_ANSWER_DELAY = 350;
+
 // onAnswer(question, isCorrect) вызывается после каждого ответа и может вернуть пояснение.
 // onFinish(result) вызывается в конце, result = { correctCount, answeredCount, score }.
 function startQuiz(container, questions, onAnswer, onFinish) {
@@ -98,7 +101,9 @@ function goToNextQuestion() {
 }
 
 // Вызывается, когда пользователь ответил: считаем результат и показываем разбор
-function finishQuestion(isCorrect) {
+// chosenText — что выбрал или написал пользователь (для разбора ошибки).
+// autoAdvance — вопрос с вариантами: верный ответ сразу ведёт к следующему вопросу.
+function finishQuestion(isCorrect, chosenText, autoAdvance) {
   const question = quiz.questions[quiz.currentIndex];
 
   if (!question.isRetry) {
@@ -125,10 +130,23 @@ function finishQuestion(isCorrect) {
     goToNextQuestion();
     return;
   }
-  showFeedback(question, isCorrect, note);
+
+  // Верный ответ без пояснения — не заставляем нажимать «Дальше». Короткая пауза нужна,
+  // чтобы успеть увидеть зелёную подсветку.
+  if (isCorrect && autoAdvance && note === '') {
+    const currentQuiz = quiz;
+    const index = quiz.currentIndex;
+    setTimeout(function () {
+      if (quiz === currentQuiz && quiz.currentIndex === index) {
+        goToNextQuestion();
+      }
+    }, CORRECT_ANSWER_DELAY);
+    return;
+  }
+  showFeedback(question, isCorrect, note, chosenText);
 }
 
-function showFeedback(question, isCorrect, note) {
+function showFeedback(question, isCorrect, note, chosenText) {
   const element = cloneTemplate('feedback-template');
   const box = element.querySelector('.feedback');
   const title = element.querySelector('.feedback-title');
@@ -147,6 +165,9 @@ function showFeedback(question, isCorrect, note) {
   // После вопроса по слову показываем его карточку, после грамматики — правильное предложение
   if (question.exercise) {
     details.append(createGrammarAnswer(question.exercise));
+    if (!isCorrect) {
+      details.append(createMistakeExplanation(question.exercise, chosenText));
+    }
   } else {
     details.append(createWordCard(question.word));
   }
@@ -317,7 +338,7 @@ function showTranslateQuestion(word) {
   for (const button of buttons) {
     button.addEventListener('click', function () {
       revealOptions(buttons, word.russian, button);
-      finishQuestion(button.textContent === word.russian);
+      finishQuestion(button.textContent === word.russian, button.textContent, true);
     });
   }
 
@@ -341,7 +362,7 @@ function showChooseWordQuestion(word) {
   for (const button of buttons) {
     button.addEventListener('click', function () {
       revealOptions(buttons, word.english, button);
-      finishQuestion(button.textContent === word.english);
+      finishQuestion(button.textContent === word.english, button.textContent, true);
     });
   }
 
@@ -427,7 +448,7 @@ function showGrammarChoiceQuestion(exercise) {
   for (const button of buttons) {
     button.addEventListener('click', function () {
       revealOptions(buttons, correctText, button);
-      finishQuestion(button.textContent === correctText);
+      finishQuestion(button.textContent === correctText, button.textContent, true);
     });
   }
 
@@ -461,7 +482,7 @@ function showGrammarGapQuestion(exercise) {
     input.disabled = true;
     input.classList.add(isCorrect ? 'correct' : 'wrong');
     element.querySelector('.check-button').hidden = true;
-    finishQuestion(isCorrect);
+    finishQuestion(isCorrect, input.value.trim(), false);
   }
 
   setupAnswerInput(element, input, checkAnswer);
@@ -480,6 +501,41 @@ function createGrammarAnswer(exercise) {
     element.querySelector('.text-after').textContent = sentence.after;
   }
   return element;
+}
+
+// Разбор ошибки: что ответил пользователь и правило темы, к которой относится упражнение
+function createMistakeExplanation(exercise, chosenText) {
+  const element = cloneTemplate('mistake-explanation-template');
+  const chosenLine = element.querySelector('.mistake-chosen');
+  const lesson = findLessonOfExercise(exercise);
+
+  if (chosenText) {
+    chosenLine.querySelector('b').textContent = chosenText;
+  } else {
+    chosenLine.hidden = true;
+  }
+
+  const ruleBox = element.querySelector('.mistake-rule');
+  if (lesson) {
+    ruleBox.querySelector('.mistake-rule-title').textContent = 'Правило: ' + lesson.title;
+    ruleBox.querySelector('.mistake-rule-body').innerHTML = lesson.rule;
+    if (exercise.why) {
+      element.querySelector('.mistake-why').textContent = exercise.why;
+    }
+  } else {
+    ruleBox.hidden = true;
+  }
+  element.querySelector('.mistake-why').hidden = !exercise.why;
+  return element;
+}
+
+function findLessonOfExercise(exercise) {
+  for (const lesson of GRAMMAR) {
+    if (lesson.exercises.indexOf(exercise) !== -1) {
+      return lesson;
+    }
+  }
+  return null;
 }
 
 /* ================= Итоговый экран ================= */

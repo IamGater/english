@@ -1,0 +1,147 @@
+// Дополнительные упражнения к темам B1 (добавляются к grammar-b1.js в content.js).
+const GRAMMAR_EXTRA_B1 = {
+  'b1-perfect-vs-past': [
+    { question: 'We ___ in this city for ten years. (live)', answer: 'have lived', alsoCorrect: ["'ve lived", 'have been living'] },
+    { question: 'I ___ my passport yesterday. (lose)', answer: 'lost' },
+    { question: 'She has been a teacher ___ 2010.', answer: 'since' },
+    { question: 'He has lived here ___ five years.', answer: 'for' },
+    { question: 'When ___ you last see him?', options: ['did', 'have', 'do'] },
+    { question: 'I have already ___ breakfast. (have)', answer: 'had' },
+    { question: 'They ___ married in 2005.', options: ['got', 'have got', 'have gotten'] },
+    { question: 'Have you ever ___ to Australia? (be)', answer: 'been' },
+    { question: 'Last week we ___ a new car. (buy)', answer: 'bought' },
+    { question: 'I ___ my homework yet.', options: ["haven't finished", "didn't finished", "hasn't finished"] }
+  ],
+  'b1-perfect-continuous': [
+    { question: 'She has been ___ for an hour. (cook)', answer: 'cooking' },
+    { question: 'How long have they been ___ English? (learn)', answer: 'learning' },
+    { question: 'I ___ been working here since June.', options: ['have', 'has', 'am'] },
+    { question: 'He ___ been running, so he is tired.', options: ['has', 'have', 'is'] },
+    { question: 'We have been ___ for you all morning! (wait)', answer: 'waiting' },
+    { question: 'It has been ___ since early morning. (snow)', answer: 'snowing' },
+    { question: 'How long ___ she been studying?', answer: 'has' },
+    { question: 'You look tired. Have you been ___ well? (sleep)', answer: 'sleeping' },
+    { question: 'They ___ been building this bridge for two years.', options: ['have', 'has', 'are'] },
+    { question: 'I have been ___ you for ages!', options: ['looking for', 'looked for', 'look for'] }
+  ],
+  'b1-second-conditional': [
+    { question: 'If I ___ more money, I would buy a bigger house. (have)', answer: 'had' },
+    { question: 'She would travel more if she ___ time. (have)', answer: 'had' },
+    { question: 'If he ___ harder, he would pass the exam. (study)', answer: 'studied' },
+    { question: 'What ___ you do if you saw a ghost?', answer: 'would' },
+    { question: 'If I lived in Paris, I ___ visit the Louvre every week.', options: ['would', 'will', 'am going to'] },
+    { question: 'If they ___ here, they would help us.', options: ['were', 'are', 'will be'] },
+    { question: 'We ___ go out if the weather were better.', answer: 'would' },
+    { question: 'If I ___ a bird, I would fly to you. (to be)', answer: 'were', alsoCorrect: ['was'] },
+    { question: 'Выберите правильное предложение:', options: ['If I won the lottery, I would stop working.', 'If I would win the lottery, I would stop working.', 'If I win the lottery, I would stop working.'] },
+    { question: 'If she ___ speak Italian, she would get the job. (can)', answer: 'could' }
+  ],
+  'b1-passive': [
+    { question: 'The room ___ cleaned every day.', options: ['is', 'are', 'does'] },
+    { question: 'These cars ___ made in Germany.', options: ['are', 'is', 'were been'] },
+    { question: 'The window was ___ by a boy. (break)', answer: 'broken' },
+    { question: 'The thief ___ arrested yesterday.', options: ['was', 'were', 'is'] },
+    { question: 'A new bridge is ___ built in our town. (being)', answer: 'being' },
+    { question: 'The cake was ___ by my mother. (make)', answer: 'made' },
+    { question: 'The report has been ___ already. (finish)', answer: 'finished' },
+    { question: 'This email ___ sent to all students.', options: ['was', 'did', 'has'] },
+    { question: 'The film will ___ shown tomorrow.', options: ['be', 'been', 'being'] },
+    { question: 'Dinner ___ served at seven. (is / are)', answer: 'is' }
+  ],
+  'b1-relative-clauses': [
+    { question: 'The woman ___ called me is my aunt.', options: ['who', 'whose', 'where'] },
+    { question: 'This is the restaurant ___ we had dinner.', answer: 'where' },
+    { question: 'The man ___ car was stolen called the police.', answer: 'whose' },
+    { question: 'The bag ___ is on the chair is mine.', options: ['which', 'who', 'whose'] },
+    { question: 'I like people ___ are honest.', options: ['who', 'which', 'where'] },
+    { question: 'That is the girl ___ I told you about.', options: ['that', 'where', 'whose'] },
+    { question: 'The phone ___ I bought last week is already broken.', options: ['that', 'who', 'where'] },
+    { question: 'This is the house ___ my grandfather was born.', answer: 'where' },
+    { question: 'Is this the boy ___ mother is a doctor?', answer: 'whose' },
+    { question: 'The teacher ___ taught me French is retired.', options: ['who', 'whose', 'which'] }
+  ],
+  'b1-reported-speech': [
+    { question: '"I like pizza." → She said she ___ pizza.', answer: 'liked' },
+    { question: '"We are happy." → They said they ___ happy.', answer: 'were' },
+    { question: '"I have lost my keys." → He said he ___ lost his keys.', answer: 'had' },
+    { question: '"I will help you." → He said he ___ help me.', answer: 'would' },
+    { question: '"I can drive." → She said she ___ drive.', answer: 'could' },
+    { question: 'He ___ us that he was leaving.', options: ['told', 'said', 'spoke'] },
+    { question: 'She said that she ___ tired.', options: ['was', 'is', 'be'] },
+    { question: '"I am working." → He said he ___ working.', answer: 'was' },
+    { question: '"Do you like tea?" → She asked me ___ I liked tea.', options: ['if', 'that', 'what'] },
+    { question: '"Where do you live?" → He asked me where I ___.', options: ['lived', 'live', 'did live'] }
+  ],
+  'b1-used-to': [
+    { question: 'We ___ to go to the beach every summer.', answer: 'used' },
+    { question: 'I didn\'t ___ to like coffee. (use)', answer: 'use' },
+    { question: 'My grandfather ___ to be a sailor.', options: ['used', 'use', 'is used'] },
+    { question: 'Did she ___ to live in London?', options: ['use', 'used', 'uses'] },
+    { question: 'People ___ to write letters. Now they send emails.', options: ['used', 'use', 'were used'] },
+    { question: 'There ___ to be a park here. Now it is a car park.', answer: 'used' },
+    { question: 'He used to ___ a lot of sweets. (eat)', answer: 'eat' },
+    { question: 'We didn\'t ___ to have a car. (use)', answer: 'use' },
+    { question: 'When I was a child, I ___ to be afraid of dogs.', options: ['used', 'use', 'am used'] },
+    { question: 'Выберите правильное предложение:', options: ['She used to play the piano.', 'She use to play the piano.', 'She used to played the piano.'] }
+  ],
+  'b1-gerund-infinitive': [
+    { question: 'I am interested in ___ languages. (learn)', answer: 'learning' },
+    { question: 'She promised ___ me. (call)', answer: 'to call' },
+    { question: 'He avoids ___ meat. (eat)', answer: 'eating' },
+    { question: 'They agreed ___ on Monday. (meet)', answer: 'to meet' },
+    { question: 'I look forward to ___ you. (see)', answer: 'seeing' },
+    { question: 'We can\'t afford ___ a new car.', options: ['to buy', 'buying', 'buy'] },
+    { question: 'She suggested ___ a taxi.', options: ['taking', 'to take', 'take'] },
+    { question: 'He admitted ___ the window.', options: ['breaking', 'to break', 'break'] },
+    { question: 'I would like ___ you something.', options: ['to ask', 'asking', 'ask'] },
+    { question: 'Thank you for ___ me. (help)', answer: 'helping' }
+  ],
+  'b1-modals-ability': [
+    { question: 'When I was young, I ___ run very fast.', options: ['could', 'can', 'might'] },
+    { question: 'Will you be ___ to come to the party? (able)', answer: 'able' },
+    { question: 'It ___ snow tomorrow. I am not sure.', options: ['might', 'can', 'is able to'] },
+    { question: '___ I borrow your pen, please?', options: ['Could', 'Am I able', 'Do I can'] },
+    { question: 'She was able ___ finish the project on time. (to)', answer: 'to' },
+    { question: 'I ___ find my glasses anywhere yesterday.', options: ["couldn't", "can't", "mightn't"] },
+    { question: 'He might ___ late. (be)', answer: 'be' },
+    { question: 'We ___ able to see the mountains from our hotel.', options: ['were', 'could to', 'can'] },
+    { question: 'They may ___ the answer. (know)', answer: 'know' },
+    { question: 'I\'m sorry, I ___ come to your party last night.', options: ["couldn't", "might not to", "mustn't"] }
+  ],
+  'b1-question-tags': [
+    { question: 'It is cold today, ___ it?', answer: "isn't" },
+    { question: 'They live in Rome, ___ they?', answer: "don't" },
+    { question: 'She can\'t swim, ___ she?', answer: 'can' },
+    { question: 'You have finished, ___ you?', answer: "haven't" },
+    { question: 'He works hard, ___?', options: ["doesn't he", "isn't he", "don't he"] },
+    { question: 'You didn\'t see him, ___ you?', options: ['did', "didn't", 'do'] },
+    { question: 'They will come, ___?', options: ["won't they", "don't they", "aren't they"] },
+    { question: 'Nobody called, ___?', options: ['did they', "didn't they", 'did he not'] },
+    { question: 'I am right, ___ I?', answer: "aren't" },
+    { question: 'Open the door, ___?', options: ['will you', 'shall we', "don't you"] }
+  ],
+  'b1-articles-advanced': [
+    { question: 'Выберите правильное предложение:', options: ['I love music.', 'I love the music.', 'I love a music.'] },
+    { question: 'We went to ___ cinema last night. (a / an / the)', answer: 'the' },
+    { question: 'Выберите правильное предложение:', options: ['I play tennis every week.', 'I play the tennis every week.', 'I play a tennis every week.'] },
+    { question: 'He plays ___ guitar very well. (a / an / the)', answer: 'the' },
+    { question: '___ Alps are in Europe.', options: ['The', 'A', 'An'] },
+    { question: 'Выберите правильное предложение:', options: ['Dogs are loyal animals.', 'The dogs are loyal animals.', 'A dogs are loyal animals.'] },
+    { question: 'I saw ___ accident yesterday. (a / an / the)', answer: 'an' },
+    { question: 'Выберите правильное предложение:', options: ['I go to school by bike.', 'I go to the school by the bike.', 'I go to a school by a bike.'] },
+    { question: 'What is ___ capital of France? (a / an / the)', answer: 'the' },
+    { question: 'Выберите правильное предложение:', options: ['Water is important for life.', 'The water is important for the life.', 'A water is important for life.'] }
+  ],
+  'b1-phrasal-verbs-order': [
+    { question: 'Выберите правильное предложение:', options: ['Put it on, it is cold.', 'Put on it, it is cold.', 'Put in it on, it is cold.'] },
+    { question: 'Please turn ___ the music. It is too loud. (down)', answer: 'down' },
+    { question: 'Выберите правильное предложение:', options: ['I threw it away.', 'I threw away it.', 'I threw it of away.'] },
+    { question: 'We need to look ___ this problem. (в смысле «рассмотреть»)', answer: 'into' },
+    { question: 'She is looking ___ her glasses. (искать)', answer: 'for' },
+    { question: 'Выберите правильное предложение:', options: ['Can you help me out?', 'Can you help out me?', 'Can you help me of out?'] },
+    { question: 'The plane took ___ at six. (взлетел)', answer: 'off' },
+    { question: 'Выберите правильное предложение:', options: ['Pick them up, please.', 'Pick up them, please.', 'Pick them, up please.'] },
+    { question: 'I woke ___ at seven this morning.', answer: 'up' },
+    { question: 'Выберите правильное предложение:', options: ['He called the meeting off.', 'He called off it the meeting.', 'He called off the meeting it.'] }
+  ]
+};

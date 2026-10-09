@@ -1,0 +1,135 @@
+// Дополнительные упражнения к темам A2 (добавляются к grammar-a2.js в content.js).
+const GRAMMAR_EXTRA_A2 = {
+  'a2-past-irregular': [
+    { question: 'She ___ me a present last week. (give)', answer: 'gave' },
+    { question: 'We ___ a great film on Friday. (see)', answer: 'saw' },
+    { question: 'He ___ the window by accident. (break)', answer: 'broke' },
+    { question: 'I ___ up at six yesterday. (get)', answer: 'got' },
+    { question: 'They ___ to Spain last summer.', options: ['flew', 'flied', 'fly'] },
+    { question: 'She ___ me the truth.', options: ['told', 'telled', 'tell'] },
+    { question: 'Did he ___ you the money? (give)', answer: 'give' },
+    { question: 'We ___ a taxi to the airport. (take)', answer: 'took' },
+    { question: 'I ___ a strange noise last night. (hear)', answer: 'heard' },
+    { question: 'He ___ not know the answer. (do)', answer: 'did' }
+  ],
+  'a2-future': [
+    { question: 'I think she ___ like this gift.', options: ['will', 'is going', 'goes'] },
+    { question: 'We ___ going to have a party on Saturday. (to be)', answer: 'are' },
+    { question: 'He is going ___ buy a new car. (to)', answer: 'to' },
+    { question: 'Look out! You ___ fall!', options: ['are going to', 'will', 'go to'] },
+    { question: 'I ___ help you with your bags. (will)', answer: 'will', alsoCorrect: ["'ll"] },
+    { question: 'The shop ___ be open tomorrow. It is a holiday.', options: ["won't", "doesn't", "isn't"] },
+    { question: '___ you going to study tonight?', options: ['Are', 'Will', 'Do'] },
+    { question: 'I am sure they ___ win the game. (will)', answer: 'will', alsoCorrect: ["'ll"] },
+    { question: 'She ___ going to have a baby. (to be)', answer: 'is' },
+    { question: 'Выберите правильное предложение:', options: ['It will be sunny tomorrow.', 'It will to be sunny tomorrow.', 'It wills be sunny tomorrow.'] }
+  ],
+  'a2-comparison': [
+    { question: 'This road is ___ than that one. (long)', answer: 'longer' },
+    { question: 'Summer is ___ than winter. (warm)', answer: 'warmer' },
+    { question: 'She is the ___ girl in the class. (tall)', answer: 'tallest' },
+    { question: 'My bag is ___ than yours. (heavy)', answer: 'heavier' },
+    { question: 'English is ___ difficult than Chinese.', options: ['less', 'least', 'lesser'] },
+    { question: 'This is the ___ book I have ever read. (bad)', answer: 'worst' },
+    { question: 'Tom is twelve and Ben is ten. Tom is ___ than Ben. (old)', answer: 'older' },
+    { question: 'Today is ___ than yesterday.', options: ['hotter', 'more hot', 'hottest'] },
+    { question: 'This exercise is the ___ of all.', options: ['easiest', 'most easy', 'easier'] },
+    { question: 'She is not as clever ___ her sister.', options: ['as', 'than', 'that'] }
+  ],
+  'a2-quantifiers': [
+    { question: 'There are ___ eggs in the fridge. (несколько)', options: ['some', 'any', 'much'] },
+    { question: 'Do you have ___ brothers or sisters?', options: ['any', 'some', 'much'] },
+    { question: 'How ___ sugar do you take in your tea?', options: ['much', 'many', 'few'] },
+    { question: 'How ___ people are there in your family?', options: ['many', 'much', 'a lot'] },
+    { question: 'I don\'t have ___ free time. (any / some)', answer: 'any' },
+    { question: 'Would you like ___ tea? (some / any)', answer: 'some' },
+    { question: 'There are very ___ tourists in winter.', options: ['few', 'little', 'much'] },
+    { question: 'We have very ___ time left.', options: ['little', 'few', 'many'] },
+    { question: 'She has a lot ___ friends. (of)', answer: 'of' },
+    { question: 'I do not eat ___ meat. (much / many)', answer: 'much' }
+  ],
+  'a2-present-perfect': [
+    { question: 'I have ___ my homework. (do)', answer: 'done' },
+    { question: 'She has ___ to Rome twice. (be)', answer: 'been' },
+    { question: 'They have ___ their breakfast already. (have)', answer: 'had' },
+    { question: 'Have you ever ___ a horse? (ride)', answer: 'ridden' },
+    { question: 'He ___ not finished yet.', options: ['has', 'have', 'did'] },
+    { question: 'We have ___ here for five years. (live)', answer: 'lived' },
+    { question: '___ you ever been to Japan?', options: ['Have', 'Has', 'Did'] },
+    { question: 'I have never ___ sushi. (try)', answer: 'tried' },
+    { question: 'She has ___ the door. (open)', answer: 'opened' },
+    { question: 'My brother ___ just come home.', options: ['has', 'have', 'is'] }
+  ],
+  'a2-modals': [
+    { question: 'You ___ wear a seat belt. It is the law.', options: ['must', "don't have to", 'might'] },
+    { question: 'You ___ come with me if you do not want to.', options: ["don't have to", "mustn't", "shouldn't to"] },
+    { question: 'He ___ see a doctor. He looks ill.', options: ['should', 'has to to', 'must to'] },
+    { question: 'We ___ to leave early tomorrow. (have)', answer: 'have' },
+    { question: 'You ___ drive without a licence. (mustn\'t)', answer: "mustn't", alsoCorrect: ['must not'] },
+    { question: 'Children ___ to go to school. (have)', answer: 'have' },
+    { question: 'You should ___ to your parents. (listen)', answer: 'listen' },
+    { question: 'She ___ to work on Sundays. She is free.', options: ["doesn't have", "mustn't", "haven't"] },
+    { question: 'Do I ___ to wear a tie?', options: ['have', 'must', 'should to'] },
+    { question: 'You ___ eat so much sugar. It is bad for you.', options: ["shouldn't", "don't must", "not should"] }
+  ],
+  'a2-past-continuous': [
+    { question: 'I ___ sleeping when the phone rang.', options: ['was', 'were', 'am'] },
+    { question: 'They ___ playing cards at nine o\'clock. (to be)', answer: 'were' },
+    { question: 'She was ___ a book at that time. (read)', answer: 'reading' },
+    { question: 'What was he ___ when you saw him? (do)', answer: 'doing' },
+    { question: 'We ___ walking home when it started to rain.', options: ['were', 'was', 'did'] },
+    { question: 'He ___ driving fast when the police stopped him.', options: ['was', 'were', 'is'] },
+    { question: 'While I ___ studying, my brother was playing music.', options: ['was', 'were', 'am'] },
+    { question: 'The sun ___ shining when we woke up. (to be)', answer: 'was' },
+    { question: '___ it raining at six o\'clock?', options: ['Was', 'Were', 'Did'] },
+    { question: 'They were not ___ attention. (pay)', answer: 'paying' }
+  ],
+  'a2-conditionals': [
+    { question: 'If you ___ water to 100 degrees, it boils. (heat)', answer: 'heat' },
+    { question: 'If he ___ late, we will start without him. (be)', answer: 'is' },
+    { question: 'If it is sunny, we ___ go to the beach.', answer: 'will', alsoCorrect: ["'ll"] },
+    { question: 'I will help you if you ___ me.', options: ['ask', 'will ask', 'asked'] },
+    { question: 'If I ___ my keys, I will call you. (find)', answer: 'find' },
+    { question: 'She will be angry if you ___ her.', options: ["don't help", "won't help", "didn't helped"] },
+    { question: 'If we leave now, we ___ be on time.', options: ['will', 'would', 'are'] },
+    { question: 'Выберите правильное предложение:', options: ['If it snows, we will build a snowman.', 'If it will snow, we build a snowman.', 'If it snows, we would build a snowman.'] },
+    { question: 'If you mix red and blue, you ___ purple. (get)', answer: 'get' },
+    { question: 'What will you do if you ___ the exam? (fail)', answer: 'fail' }
+  ],
+  'a2-too-enough': [
+    { question: 'It is ___ cold to swim today.', options: ['too', 'enough', 'very much'] },
+    { question: 'She is not tall ___ to reach the shelf.', answer: 'enough' },
+    { question: 'I have ___ money to buy this. (достаточно)', options: ['enough', 'too', 'too much'] },
+    { question: 'There is too ___ noise here. (much / many)', answer: 'much' },
+    { question: 'We have too ___ problems. (much / many)', answer: 'many' },
+    { question: 'The bag is ___ heavy for me. I cannot carry it.', options: ['too', 'enough', 'so much'] },
+    { question: 'Выберите правильное предложение:', options: ['He is old enough to vote.', 'He is enough old to vote.', 'He is too old enough to vote.'] },
+    { question: 'The soup is not hot ___.', answer: 'enough' },
+    { question: 'I am ___ tired to go out tonight.', options: ['too', 'enough', 'much'] },
+    { question: 'Is the water warm ___?', answer: 'enough' }
+  ],
+  'a2-indefinite-pronouns': [
+    { question: 'I want to tell you ___ important.', options: ['something', 'anything', 'nothing'] },
+    { question: 'Is there ___ in the box?', options: ['anything', 'nothing', 'no one'] },
+    { question: '___ called you while you were out.', options: ['Somebody', 'Anybody', 'Everything'] },
+    { question: 'I know ___ here. It is my first day.', options: ['no one', 'anyone', 'someone'] },
+    { question: 'We looked ___, but we did not find the cat.', options: ['everywhere', 'nowhere', 'somewhere'] },
+    { question: 'She did not say ___.', options: ['anything', 'something', 'nothing'] },
+    { question: 'Let\'s go ___ nice for dinner. (somewhere / anywhere)', answer: 'somewhere' },
+    { question: '___ knows the answer. It is too difficult.', options: ['Nobody', 'Everybody', 'Somebody'] },
+    { question: 'Do you want ___ to drink? (something / anything)', answer: 'something', alsoCorrect: ['anything'] },
+    { question: '___ is here. The room is empty.', options: ['Nobody', 'Everybody', 'Anybody'] }
+  ],
+  'a2-like-would-like': [
+    { question: 'She likes ___ in the sea. (swim)', answer: 'swimming', alsoCorrect: ['to swim'] },
+    { question: 'I would like ___ you something. (ask)', answer: 'to ask' },
+    { question: 'Would you like ___ some tea?', options: ['to have', 'having', 'have'] },
+    { question: 'He likes ___ computer games.', options: ['playing', 'play', 'to playing'] },
+    { question: 'What would you like ___ for dinner? (eat)', answer: 'to eat' },
+    { question: 'We would like ___ a table for two. (book)', answer: 'to book' },
+    { question: 'They don\'t like ___ in the rain. (walk)', answer: 'walking', alsoCorrect: ['to walk'] },
+    { question: '___ you like some coffee?', options: ['Would', 'Do', 'Are'] },
+    { question: 'I ___ like to see the menu, please.', options: ['would', 'am', 'do'] },
+    { question: 'Do you like ___?', options: ['dancing', 'dance', 'to dancing'] }
+  ]
+};

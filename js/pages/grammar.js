@@ -74,6 +74,42 @@ function createListItem(item, number, scores, address) {
 
 let currentLesson = null;
 
+// За одну попытку задаётся не весь банк упражнений, а случайная выборка: так нельзя
+// пройти тему, запомнив ответы или угадывая. Не меньше трети вопросов — с вписыванием слова.
+const LESSON_QUESTION_COUNT = 10;
+const MIN_TYPED_SHARE = 0.4;
+
+// Какие упражнения темы были в прошлой попытке (в этой сессии): в новой попытке они идут в последнюю очередь
+const lastAskedExercises = {};
+
+// Выбирает упражнения для одной попытки
+function pickLessonExercises(lesson) {
+  const previous = lastAskedExercises[lesson.id] || [];
+  const fresh = [];
+  const seen = [];
+  for (const exercise of shuffle(lesson.exercises)) {
+    (previous.indexOf(exercise) === -1 ? fresh : seen).push(exercise);
+  }
+  const ordered = fresh.concat(seen);
+
+  const typed = ordered.filter(function (exercise) { return !exercise.options; });
+  const choice = ordered.filter(function (exercise) { return exercise.options; });
+  const typedWanted = Math.min(typed.length, Math.ceil(LESSON_QUESTION_COUNT * MIN_TYPED_SHARE));
+
+  // Сначала обязательные «впишите слово», потом остальное в порядке «свежести»
+  const picked = typed.slice(0, typedWanted);
+  for (const exercise of ordered) {
+    if (picked.length >= LESSON_QUESTION_COUNT) {
+      break;
+    }
+    if (picked.indexOf(exercise) === -1) {
+      picked.push(exercise);
+    }
+  }
+  lastAskedExercises[lesson.id] = picked;
+  return shuffle(picked);
+}
+
 function showLessonPage(lessonId) {
   const lesson = findLesson(lessonId);
   if (!lesson) {
@@ -95,7 +131,7 @@ function showLessonPage(lessonId) {
 function showLessonStart() {
   const element = cloneTemplate('lesson-start-template');
   const startButton = element.querySelector('.start-button');
-  const exerciseCount = currentLesson.exercises.length;
+  const exerciseCount = Math.min(LESSON_QUESTION_COUNT, currentLesson.exercises.length);
   const bestScore = progress.grammar[currentLesson.id];
 
   let info = exerciseCount + ' ' + pluralize(exerciseCount, 'задание', 'задания', 'заданий') + '. ';
@@ -114,7 +150,7 @@ function startLessonExercises() {
   const content = document.getElementById('lesson-content');
 
   const questions = [];
-  for (const exercise of shuffle(currentLesson.exercises)) {
+  for (const exercise of pickLessonExercises(currentLesson)) {
     questions.push({ type: 'grammar', exercise: exercise });
   }
 

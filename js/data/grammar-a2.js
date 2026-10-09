@@ -259,12 +259,12 @@ const GRAMMAR_A2 = [
         <b>Would</b> you <b>like</b> a coffee? — Хочешь кофе? (сейчас)</p>
     `,
     exercises: [
-      { question: 'I like ___ books. (read)', answer: 'reading' },
+      { question: 'I like ___ books. (read)', answer: 'reading', alsoCorrect: ['to read'] },
       { question: 'I would like ___ a coffee, please. (have)', answer: 'to have' },
       { question: 'Would you like ___ to the cinema?', options: ['to go', 'going', 'go'] },
       { question: 'Do you like ___?', options: ['swimming', 'swim', 'to swimming'] },
       { question: 'What would you like ___? (drink)', answer: 'to drink' },
-      { question: 'He does not like ___ up early. (get)', answer: 'getting' }
+      { question: 'He does not like ___ up early. (get)', answer: 'getting', alsoCorrect: ['to get'] }
     ]
   }
 ];

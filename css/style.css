@@ -247,6 +247,12 @@ details.how-it-works li { margin-bottom: .35rem; }
 .feedback.bad .feedback-title { color: var(--bad); }
 .feedback .word-card { background: transparent; padding: 6px 0 0; margin: 0; }
 .feedback .word-card-english { font-size: 1.2rem; }
+.mistake-explanation { margin-top: 10px; font-size: .92rem; }
+.mistake-chosen { color: var(--bad); }
+.mistake-why { margin-top: 6px; }
+.mistake-rule { margin-top: 8px; }
+.mistake-rule summary { cursor: pointer; color: var(--muted); font-weight: 600; }
+.mistake-rule-body { margin-top: 8px; }
 .feedback-note { font-size: .85rem; color: var(--muted); margin-top: 8px; }
 
 .result { text-align: center; padding: 28px 16px; }
