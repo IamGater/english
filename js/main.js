@@ -5,6 +5,8 @@
 //   #/vocab/A1                — список слов уровня
 //   #/vocab/train/all         — тренировка (all или уровень)
 //   #/vocab/cards/A1          — карточки
+//   #/verbs                   — неправильные глаголы
+//   #/verbs/train             — тренировка глаголов
 //   #/grammar                 — список тем
 //   #/grammar/a1-to-be        — урок
 //   #/practice                — список заданий
@@ -61,6 +63,12 @@ function showCurrentPage() {
       showFlashcardsPage(parts[2]);
     } else {
       showVocabularyPage(parts[1]);
+    }
+  } else if (section === 'verbs') {
+    if (parts[1] === 'train') {
+      showVerbsTrainingPage();
+    } else {
+      showVerbsPage();
     }
   } else if (section === 'grammar') {
     if (parts[1]) {

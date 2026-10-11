@@ -465,3 +465,19 @@ a.icon-button { text-decoration: none; }
   .hard-word { grid-template-columns: 1fr auto; }
   .hard-word .word-translation { grid-column: 1; }
 }
+
+/* Неправильные глаголы */
+.verb-table { padding: 4px 0; }
+.verb-row { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr 1.6fr; gap: 10px; padding: 8px 20px; border-top: 1px solid var(--border); }
+.verb-head { border-top: 0; font-size: .8rem; font-weight: 700; color: var(--muted); }
+.verb-base { font-weight: 600; }
+.verb-russian { color: var(--muted); }
+.verb-row.known .verb-base::after { content: ' ✓'; color: var(--ok); }
+.verb-inputs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.verb-inputs label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--muted); flex: 1; min-width: 160px; }
+.verb-inputs .input { font-size: 1.1rem; }
+@media (max-width: 600px) {
+  .verb-row { grid-template-columns: 1fr 1fr; padding: 8px 14px; }
+  .verb-head { display: none; }
+  .verb-russian { grid-column: 1 / -1; }
+}

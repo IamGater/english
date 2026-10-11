@@ -45,6 +45,7 @@
       <nav class="nav">
         <a href="#/" data-section="home">Обзор</a>
         <a href="#/vocab" data-section="vocab">Словарь</a>
+        <a href="#/verbs" data-section="verbs">Глаголы</a>
         <a href="#/grammar" data-section="grammar">Грамматика</a>
         <a href="#/practice" data-section="practice">Практика</a>
       </nav>
@@ -159,6 +160,28 @@
         <button class="btn" type="button" id="flashcards-next-button">Вперёд →</button>
         <button class="btn" type="button" id="flashcards-random-button">Случайная</button>
       </div>
+    </section>
+
+    <!-- Неправильные глаголы (js/pages/verbs.js) -->
+    <section class="screen" id="screen-verbs" hidden>
+      <div class="page-head">
+        <h1>Неправильные глаголы</h1>
+        <p class="muted" id="verbs-summary"></p>
+      </div>
+      <div class="toolbar">
+        <a class="btn primary" href="#/verbs/train">Тренировка</a>
+        <input class="input grow" type="search" placeholder="Поиск по глаголу или переводу" id="verbs-search">
+        <select class="input" id="verbs-filter">
+          <option value="all">Все глаголы</option>
+          <option value="unknown">Не выучены</option>
+          <option value="known">Выученные</option>
+        </select>
+      </div>
+      <div class="card verb-table">
+        <div class="verb-row verb-head"><span>Инфинитив</span><span>Past Simple</span><span>Past Participle</span><span>Перевод</span></div>
+        <div id="verbs-list"></div>
+      </div>
+      <div class="card empty" id="verbs-empty" hidden>Ничего не найдено.</div>
     </section>
 
     <!-- Тренировка слов, тест уровня и входной тест -->
@@ -431,6 +454,28 @@
     </div>
   </template>
 
+  <!-- Неправильные глаголы: строка таблицы и вопрос тренировки -->
+  <template id="verb-row-template">
+    <div class="verb-row">
+      <span class="verb-base"></span>
+      <span class="verb-past"></span>
+      <span class="verb-participle"></span>
+      <span class="verb-russian"></span>
+    </div>
+  </template>
+
+  <template id="verb-question-template">
+    <div>
+      <div class="question-label">Напишите вторую и третью формы</div>
+      <div class="question-text"><span class="verb-question-base"></span> <small class="muted verb-question-russian"></small></div>
+      <div class="verb-inputs">
+        <label>Past Simple <input class="input verb-past-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+        <label>Past Participle <input class="input verb-participle-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+      </div>
+      <button class="btn primary check-button" type="button">Проверить</button>
+    </div>
+  </template>
+
   <!-- Тренировка: нечего учить и повторять -->
   <template id="nothing-to-train-template">
     <div class="empty">
@@ -674,6 +719,7 @@
   <noscript><p class="wrap">Для работы сайта нужен JavaScript.</p></noscript>
 
   <!-- Данные: слова, грамматика, диалоги и аудирование по уровням -->
+  <script src="js/data/irregular-verbs.js"></script>
   <script src="js/data/words-a1.js"></script>
   <script src="js/data/words-a2.js"></script>
   <script src="js/data/words-b1.js"></script>
@@ -710,6 +756,7 @@
   <!-- Экраны -->
   <script src="js/pages/home.js"></script>
   <script src="js/pages/vocabulary.js"></script>
+  <script src="js/pages/verbs.js"></script>
   <script src="js/pages/grammar.js"></script>
   <script src="js/pages/practice.js"></script>
   <script src="js/pages/listening.js"></script>

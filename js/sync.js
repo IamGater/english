@@ -217,6 +217,7 @@ function mergeProgress(local, cloud) {
   merged.grammar = mergeByLargest(local.grammar, cloud.grammar);
   merged.practice = mergeByLargest(local.practice, cloud.practice);
   merged.exams = mergeByLargest(local.exams, cloud.exams);
+  merged.verbs = mergeByLargest(local.verbs, cloud.verbs);
   merged.wordMistakes = mergeByLargest(local.wordMistakes, cloud.wordMistakes);
   merged.grammarMistakes = mergeByLargest(local.grammarMistakes, cloud.grammarMistakes);
 

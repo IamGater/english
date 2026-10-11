@@ -11,6 +11,7 @@ const STORAGE_KEY = 'english.progress';
 //   activityDays — по дням: сколько вопросов отвечено и сколько из них верно
 //   wordMistakes, grammarMistakes — на чём пользователь ошибался (для работы над ошибками)
 //   exams        — лучший результат пробного экзамена по каждому уровню
+//   verbs        — неправильные глаголы: сколько раз подряд верно названы обе формы
 //   theme        — 'light', 'dark' или null (как в системе)
 //   hasSeenWelcome — показывали ли уже приветствие с выбором «с нуля / уже знаю»
 //   updatedAt    — когда прогресс меняли в последний раз (нужно для синхронизации между устройствами)
@@ -25,6 +26,7 @@ function createEmptyProgress() {
     wordMistakes: {},
     grammarMistakes: {},
     exams: {},
+    verbs: {},
     theme: null,
     newWordsPerSession: 10,
     hasSeenWelcome: false,
